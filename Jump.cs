@@ -7,6 +7,10 @@ public class Jump : MonoBehaviour
     public Rigidbody2D _rigid;
     public AudioSource _fxBird;
     
+    public float _jumpForce = 20f;
+    public float _jumpLimit = 1.5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,17 +26,17 @@ public class Jump : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             // Vector2의 첫번째 파라메터는 x좌표, 두번째 파라메터는 y좌표
-            Vector2 force = new Vector2(0, 100);
+            Vector2 force = new Vector2(0, _jumpForce);
             _rigid.AddForce(force);
 
             _fxBird.Play();
         }
         Vector3 vel = _rigid.velocity;
         
-        // 점프 속도 제한 값 limit이 5.0f를 넘지 않도록
+        // 점프 속도 제한 값 limit을 넘지 않도록
         // Mathf는 유니티에서 지원하는 수학개념이 포함되어 있는 클래스
         // Min 함수는 들어있는 파라메터 2개를 비교해서 작은 값을 반환
-        float limit = Mathf.Min(5.0f, vel.y);
+        float limit = Mathf.Min(_jumpLimit, vel.y);
 
         // 중력의 속도를 x는 그대로 유지하기 위해서 vel.x 를 넣고, y는 위에서 정해준 limit 값을 넣고, z축은 안쓰기 때문에 0.0f 넣었음
         _rigid.velocity = new Vector3(vel.x, limit, 0.0f);

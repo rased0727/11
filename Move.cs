@@ -70,10 +70,22 @@ public class Move : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("충돌 발생 : " + collision.gameObject.name);
+        Debug.Log("콜리전 이벤트 발생 : " + collision.gameObject.name);
 
         // GameManager에 Game Over 사실을 알려주기만 하면 됨
+        _gameMgr._isGameOver = true;
         _gameMgr.OnGameOver();
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("트리거 이벤트 발생 : " + collision.gameObject.name);
+
+        _gameMgr._score = _gameMgr._score + 1;
+        //_gameMgr._score += 1; // 이렇게 쓰거나
+        //_gameMgr._score++; // 이렇게 써도 됨
+
+
 
     }
 }
