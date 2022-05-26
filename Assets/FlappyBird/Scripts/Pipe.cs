@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ooze_green : MonoBehaviour
+public class Pipe : MonoBehaviour
 {
     public GameManager _gameMgr;
     float _speed = -0.005f; // 파이프가 좌측으로 속도

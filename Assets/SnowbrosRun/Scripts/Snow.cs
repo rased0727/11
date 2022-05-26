@@ -16,33 +16,20 @@ namespace SnowbrosRun
         public GameObject _gameMgrObj;
         public GameManager _gameMgr; 
 
-        Rigidbody2D _rigid;
-        Animator _anim;
+        public Rigidbody2D _rigid;
+        public Animator _anim;
 
-
-    
-    
-
-        // 방법2 (부모객체를 찾은 후 그 밑의 transform 컴포넌트 밑의 자식 객체를 이름으로 찾기)
-        //GameObject obj = GameObject.Find("SoundManager").transform.Find("JumpSound").gameObject;
-
-        // 방법3 (부모객체를 찾은 후 그 밑의 transform 컴포넌트 밑의 자식 객체를 인덱서로 찾기)
-        //GameObject obj = GameObject.Find("SoundManager").transform.GetChild(0).gameObject;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            _gameMgrObj = GameObject.Find("GameManager");
-            _gameMgr = _gameMgrObj.GetComponent<GameManager>();
-
-            // JumpSound 객체 찾고 거기에 붙어 있는 AudioSource 컴포넌트 가져오기
-            GameObject obj = GameObject.Find("JumpSound");
-            _jumpSound = obj.GetComponent<AudioSource>();
+            _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
 
             _rigid = GetComponent<Rigidbody2D>();
             _anim = GetComponent<Animator>();
-            //_anim.enabled.
+            _anim.enabled = false;
         }
 
         // Update is called once per frame
@@ -69,9 +56,10 @@ namespace SnowbrosRun
         {
             Debug.Log("콜리전 이벤트 발생 : " + collision.gameObject.name);
 
-            // GameManager에 Game Over 사실을 알려주기만 하면 됨
+            
             if (collision.gameObject.name != "Ground")
             {
+                // GameManager에 Game Over 사실을 알려주기
                 _gameMgr._isGameOver = true;
                 _gameMgr.OnGameOver();
                 Debug.Log("GameOver로 진입함");

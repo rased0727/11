@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SnowbrosRun
 {
@@ -9,10 +10,9 @@ namespace SnowbrosRun
         public GameObject _introUI;
         public GameObject _playUI;
         public GameObject _gameOverUI;
-        public GameObject _snowObj;
-        public GameObject _oozeMgrObj;
         public Rigidbody2D _snowRigid;
         public OozeManager _oozeMgr;
+        public Snow _snow;
 
         public bool _isIntro = true; // 인트로 상태를 나타냄
         public bool _isPlay = false; // 게임중 상태를 나타냄
@@ -23,17 +23,15 @@ namespace SnowbrosRun
         // Start is called before the first frame update
         void Start()
         {
-            _snowObj = GameObject.Find("Snow");
-            _snowRigid = _snowObj.GetComponent<Rigidbody2D>();
-            _oozeMgrObj = GameObject.Find("OozeManager");
-            _oozeMgr = _oozeMgrObj.GetComponent<OozeManager>();
-
             _introUI = GameObject.Find("UI_Intro");
             _playUI = GameObject.Find("UI_Play");
             _gameOverUI = GameObject.Find("UI_GameOver");
 
+            _snowRigid = GameObject.Find("Snow").GetComponent<Rigidbody2D>(); ;
+            _oozeMgr = GameObject.Find("OozeManager").GetComponent<OozeManager>();
+            _snow = GameObject.Find("Snow").GetComponent<Snow>();
 
-            // 게임이 시작되면 UI_Intro를 켜준다
+            // 게임이 실행되면 UI_Intro를 켜준다
             _introUI.SetActive(true);
             _playUI.SetActive(false);
             _gameOverUI.SetActive(false);
@@ -49,32 +47,32 @@ namespace SnowbrosRun
         // 게임시작 버튼 이벤트 함수. 이벤트 함수는 관례상 On을 사용함
         public void OnClick_GameStart()
         {
-            Debug.Log("게임 시작 버튼 눌림!!!");
-
-            // 인트로 UI를 꺼주고, 플레이 UI를 켜줌
+            // 플레이 UI를 켜주고 그 외 UI는 비활성화
             _introUI.SetActive(false);
             _playUI.SetActive(true);
+            _gameOverUI.SetActive(false);
 
-            // 파이프 생성 시작
+            // 슬라임 복제 시작
             _oozeMgr.Start_OozePipeSet();
-           
+
+            _isIntro = false;
             _isPlay = true;
+            _isGameOver = false;
+
+            _snow._anim.enabled = true;
         }
 
         public void OnGameOver()
         {
-            Debug.Log("OnGameOver함수 호출");
+            _introUI.SetActive(false);
+            _playUI.SetActive(false);
+            _gameOverUI.SetActive(true);
 
-            // 플레이 UI를 꺼주고
-            //_playUI.SetActive(false);
-
-            // 게임오버 UI를 켜준다
-            //_gameOverUI.SetActive(true);
-
-            // 그리고 중력을 비활성화 시켜준다
-            //_snowRigid.simulated = false;
-
-            _isGameOver = true;
+            _snow._anim.enabled = false;
+        }
+        public void OnClickRetry()
+        {
+            SceneManager.LoadScene("SnowbrosRun");
         }
     }
 }
