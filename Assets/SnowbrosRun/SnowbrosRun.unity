@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 671049175}
   - component: {fileID: 671049178}
   m_Layer: 0
-  m_Name: Ooze-green
+  m_Name: Ooze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1324,6 +1324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8440deece39c6524ba87401bc8129659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _newColor: {r: 0, g: 0, b: 0, a: 0}
   _speed: -0.8
 --- !u!1 &781507358
 GameObject:
@@ -3178,5 +3179,6 @@ MonoBehaviour:
   _jumpSound: {fileID: 0}
   _gameMgrObj: {fileID: 0}
   _gameMgr: {fileID: 0}
+  _ooze: {fileID: 0}
   _rigid: {fileID: 0}
   _anim: {fileID: 0}

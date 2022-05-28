@@ -14,7 +14,8 @@ namespace SnowbrosRun
     
         public AudioSource _jumpSound;
         public GameObject _gameMgrObj;
-        public GameManager _gameMgr; 
+        public GameManager _gameMgr;
+        public Ooze _ooze;
 
         public Rigidbody2D _rigid;
         public Animator _anim;
@@ -26,8 +27,9 @@ namespace SnowbrosRun
         {
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
             _jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
+            _ooze = GameObject.Find("Ooze").GetComponent<Ooze>();
 
-            _rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponent<Rigidbody2D>();
             _anim = GetComponent<Animator>();
             _anim.enabled = false;
         }
@@ -63,6 +65,8 @@ namespace SnowbrosRun
                 _gameMgr._isGameOver = true;
                 _gameMgr.OnGameOver();
                 Debug.Log("GameOver로 진입함");
+
+                _ooze.Transparency();
             }
 
         }

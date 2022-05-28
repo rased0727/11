@@ -4,15 +4,20 @@ using UnityEngine;
 
 namespace SnowbrosRun
 {
-    public class Ooze_green : MonoBehaviour
+    public class Ooze : MonoBehaviour
     {
         GameManager _gameMgr;
+
+        SpriteRenderer _spriteRenderer;
+        public Color _newColor;
 
         public float _speed = -0.005f; // 진흙괴물이 좌측으로 이동하는 속도
                                 // Start is called before the first frame update
         void Start()
         {
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _newColor.a = 0;
         }
 
         // Update is called once per frame
@@ -23,6 +28,10 @@ namespace SnowbrosRun
                 transform.Translate(_speed * Time.deltaTime, 0, 0); // x축으로만 좌측이동
             }
             
+        }
+        public void Transparency()
+        {
+            _spriteRenderer.color = _newColor;
         }
     }
 }
