@@ -15,9 +15,11 @@ namespace SnowbrosRun
                                 // Start is called before the first frame update
         void Start()
         {
+            /* 투명화 할 때 사용
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _newColor.a = 0;
+            */
         }
 
         // Update is called once per frame
@@ -29,10 +31,12 @@ namespace SnowbrosRun
             }
             
         }
+        /* 투명화 할 때 사용
         public void Transparency()
         {
-            _spriteRenderer.color = _newColor;
+            //_spriteRenderer.color = _newColor;
         }
+        */
     }
 }
 

@@ -27,7 +27,9 @@ namespace SnowbrosRun
         {
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
             _jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
-            _ooze = GameObject.Find("Ooze").GetComponent<Ooze>();
+            /* 투명화 사용시
+            // _ooze = GameObject.Find("Ooze").GetComponent<Ooze>();
+            */
 
         _rigid = GetComponent<Rigidbody2D>();
             _anim = GetComponent<Animator>();
@@ -66,7 +68,9 @@ namespace SnowbrosRun
                 _gameMgr.OnGameOver();
                 Debug.Log("GameOver로 진입함");
 
-                _ooze.Transparency();
+                /* 투명화 사용 시
+                 _ooze.Transparency();
+                */
             }
 
         }
