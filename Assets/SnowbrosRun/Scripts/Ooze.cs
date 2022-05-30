@@ -15,8 +15,8 @@ namespace SnowbrosRun
                                 // Start is called before the first frame update
         void Start()
         {
-            /* 투명화 할 때 사용
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
+            /* 투명화 할 때 사용
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _newColor.a = 0;
             */
