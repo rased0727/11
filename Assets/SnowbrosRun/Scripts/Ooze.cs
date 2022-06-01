@@ -8,18 +8,16 @@ namespace SnowbrosRun
     {
         GameManager _gameMgr;
 
-        SpriteRenderer _spriteRenderer;
-        public Color _newColor;
+        //SpriteRenderer _spriteRenderer;
+        //public Color _newColor;
 
         public float _speed = -0.005f; // 진흙괴물이 좌측으로 이동하는 속도
                                 // Start is called before the first frame update
         void Start()
         {
             _gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
-            /* 투명화 할 때 사용
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _newColor.a = 0;
-            */
+            //_newColor.a = 0.0f;
+
         }
 
         // Update is called once per frame
@@ -31,9 +29,12 @@ namespace SnowbrosRun
             }
             
         }
-        /* 투명화 할 때 사용
+        /*
         public void Transparency()
         {
+            Debug.Log("Transparency()");
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            Debug.Log(_spriteRenderer.color);
             //_spriteRenderer.color = _newColor;
         }
         */
