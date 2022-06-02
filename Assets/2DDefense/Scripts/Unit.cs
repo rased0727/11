@@ -125,13 +125,23 @@ public class Unit : MonoBehaviour
             _anim.SetBool("attack", true);
 
             // 데미지 처리
-            Unit enemyUnit = _enemyObj.GetComponent<Unit>();
-            enemyUnit.DoDamage(10);
-
+            //Unit enemyUnit = _enemyObj.GetComponent<Unit>();
+            //enemyUnit.DoDamage(10);
         }
         else // 공격범위를 벗어나면
         {
             _anim.SetBool("attack", false);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collison)
+    {
+        Debug.Log("나는 누구인가? " + gameObject.name);
+
+        Debug.Log("나를 충돌한 물체는 무엇인가? " + collison.gameObject.name);
+
+        if(collison.gameObject.name == "AttackCol")
+        {
+            DoDamage(10);
         }
     }
 }
