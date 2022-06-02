@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public int _maxHp = 100;
+    public int _hp = 0;
+
     public float _speed = 1.0f; // 캐릭터 이동속도
-    public float _attackRange = 1.75f;
+    public float _attackRange = 0.75f;
 
     public GameObject _enemyObj;
 
     Rigidbody2D _rigid;
     SpriteRenderer _renderer;
     Animator _anim;
+    BoxCollider2D _attackCol;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,25 @@ public class Unit : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
+
+        Transform childTrans = transform.Find("AttackCol");
+
+        // 널 체크
+        if (childTrans != null)
+        {
+            _attackCol = childTrans.GetComponent<BoxCollider2D>();
+        }
+
+
+        // 공격 충돌체는 시작할때는 꺼둔다
+        if (_attackCol != null)
+        {
+            _attackCol.enabled = false;
+        }
+        
+
+        //체력 초기화
+        _hp = _maxHp;
 
     }
 
@@ -32,16 +55,30 @@ public class Unit : MonoBehaviour
         //_rigid.AddForce(new Vector2(10, 0));
 
         // 2. rigidbody.vellocity 변수(x축만)를 직접 건드려서 이동 = 등속도 이동
-        Vector2 vel = _rigid.velocity;
-        if (_renderer.flipX == false)
+        bool isAttacking = _anim.GetBool("attack");
+
+        if (isAttacking)
         {
-            vel.x = _speed;
+            Vector2 vel = _rigid.velocity;
+            vel.x = 0.0f;
+            _rigid.velocity = vel;
         }
         else
         {
-            vel.x = -1.0f * _speed;
+            Vector2 vel = _rigid.velocity;
+            if (_renderer.flipX == false)
+            {
+                vel.x = _speed;
+            }
+            else
+            {
+                vel.x = -1.0f * _speed;
+            }
+            _rigid.velocity = vel;
         }
-        _rigid.velocity = vel;
+       
+       
+        
 
         if (_enemyObj != null) // 적이 설정되어 있을때만
         {
@@ -50,6 +87,27 @@ public class Unit : MonoBehaviour
 
 
     }
+    public void SetAttackCol(int on) // 1은 on, 0은 off로 약속
+    {
+        // 널 체크
+        if (_attackCol == null)
+            return;
+
+        if(on == 1)
+        {
+            _attackCol.enabled = true; // 공격 충돌체 켜기
+        }
+        else
+        {
+            _attackCol.enabled = false; // 공격 충돌체 끄기
+        }
+    }
+
+    public void DoDamage(int damage)
+    {
+        _hp -= damage;
+    }
+
     void CheckDistance() // 거리를 체크하는 함수
     {
         // 나와 적 캐릭터 간의 거리를 계산 해서, 설정된 공격범위 안에 들어오면 공격개시
@@ -65,6 +123,11 @@ public class Unit : MonoBehaviour
         {
             // 공격
             _anim.SetBool("attack", true);
+
+            // 데미지 처리
+            Unit enemyUnit = _enemyObj.GetComponent<Unit>();
+            enemyUnit.DoDamage(10);
+
         }
         else // 공격범위를 벗어나면
         {
