@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+    public RectTransform _hpBarTrans;
+    public Vector3 _hpBarOffset;
     public int _maxHp = 100;
     public int _hp = 0;
 
@@ -42,7 +43,24 @@ public class Unit : MonoBehaviour
 
         //체력 초기화
         _hp = _maxHp;
+        RefreshHpBar();
 
+
+
+
+
+    }
+
+    void RefreshHpBar() // 체력바 초기화 및 연동
+    {
+        // 체력바 초기화 및 연동
+        if (_hpBarTrans != null)
+        {
+            // fill 이미지 컴포넌트 찾기
+            Image fillImg = _hpBarTrans.Find("fill").GetComponent<Image>();
+            // 최대 체력 대비 현재 체력 비율을 fillAmount 에 넣어줌
+            fillImg.fillAmount = (float)_hp / (float)_maxHp; // fillAmount는 float 이기 때문에 _hp와 _maxHp의 경우 int 여서 형변환 해줌.
+        }
     }
 
     // Update is called once per frame
@@ -57,13 +75,14 @@ public class Unit : MonoBehaviour
         // 2. rigidbody.vellocity 변수(x축만)를 직접 건드려서 이동 = 등속도 이동
         bool isAttacking = _anim.GetBool("attack");
 
-        if (isAttacking)
+        /*
+         * if (isAttacking)
         {
             Vector2 vel = _rigid.velocity;
             vel.x = 0.0f;
             _rigid.velocity = vel;
         }
-        else
+        else*/
         {
             Vector2 vel = _rigid.velocity;
             if (_renderer.flipX == false)
@@ -84,6 +103,25 @@ public class Unit : MonoBehaviour
         {
             CheckDistance(); // 거리 체크 함수 호출
         }
+
+        UpdateHpBarPos();
+
+    } // Update() 메서드 종료
+
+    void UpdateHpBarPos() // 체력바가 항상 유닛을 따라 다니도록 해주는 메서드
+    {
+        // 이 유닛의 위치를 가져와서 (월드 좌표)
+        Vector3 unitPos = transform.position;
+
+        // 위에서 가져온 월드좌표를 UI좌표(스크린 좌표)로 변환
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(unitPos + _hpBarOffset);
+
+        // 체력바의 UI좌표를 위에서 변환한 캐릭터의 UI좌표로 바꿔줌
+        if(_hpBarTrans != null)
+        {
+            _hpBarTrans.position = screenPos;
+        }
+        
 
 
     }
@@ -106,6 +144,11 @@ public class Unit : MonoBehaviour
     public void DoDamage(int damage)
     {
         _hp -= damage;
+
+        // 히트 애니메이션 재생
+        _anim.SetTrigger("hit");
+
+        RefreshHpBar();
     }
 
     void CheckDistance() // 거리를 체크하는 함수
