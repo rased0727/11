@@ -116,9 +116,10 @@ public class Unit : MonoBehaviour
         // 위에서 가져온 월드좌표를 UI좌표(스크린 좌표)로 변환
         Vector3 screenPos = Camera.main.WorldToScreenPoint(unitPos + _hpBarOffset);
 
-        // 체력바의 UI좌표를 위에서 변환한 캐릭터의 UI좌표로 바꿔줌
+        // 혹시 _hpBarTrans 객체에 아직 아무것도 들어 있지 않다면 널체크
         if(_hpBarTrans != null)
         {
+            // 체력바의 UI좌표를 위에서 변환한 캐릭터의 UI좌표로 바꿔줌
             _hpBarTrans.position = screenPos;
         }
         
