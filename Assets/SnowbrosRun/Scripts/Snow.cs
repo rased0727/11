@@ -17,7 +17,7 @@ namespace SnowbrosRun
         //public GameObject _oozeObj;
 
         public AudioSource _jumpSound;
-        //SpriteRenderer _spriteRenderer;
+        SpriteRenderer _spriteRenderer;
         public GameManager _gameMgr;
         //public Ooze _ooze;
 
@@ -78,6 +78,13 @@ namespace SnowbrosRun
                 if (_isJump)
                 {
                     Debug.Log("Á¡ÇÁ Áß¿¡ " + collision.gameObject.tag + "¿Í ºÎµúÈû");
+
+                    //collision.gameObject.SetActive(false);
+                    _spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+                    _spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+                    
+
+
                     _isJump = false;
 
                     //_oozeObj = GameObject.FindWithTag("Ooze");
