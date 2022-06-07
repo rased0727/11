@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,14 +76,14 @@ public class Unit : MonoBehaviour
         // 2. rigidbody.vellocity 변수(x축만)를 직접 건드려서 이동 = 등속도 이동
         bool isAttacking = _anim.GetBool("attack");
 
-        /*
-         * if (isAttacking)
+        
+        if (isAttacking)
         {
             Vector2 vel = _rigid.velocity;
             vel.x = 0.0f;
             _rigid.velocity = vel;
         }
-        else*/
+        else
         {
             Vector2 vel = _rigid.velocity;
             if (_renderer.flipX == false)
@@ -102,6 +103,10 @@ public class Unit : MonoBehaviour
         if (_enemyObj != null) // 적이 설정되어 있을때만
         {
             CheckDistance(); // 거리 체크 함수 호출
+        }
+        else
+        {
+            _anim.SetBool("attack", false);
         }
 
         UpdateHpBarPos();
@@ -145,15 +150,33 @@ public class Unit : MonoBehaviour
     public void DoDamage(int damage)
     {
         _hp -= damage;
+        _hp = Math.Max(_hp, 0); // _hp와 0 을 비교해서 큰 값을 넣어준다. 즉 최소값을 0으로 제한하는 코드
 
-        // 히트 애니메이션 재생
-        _anim.SetTrigger("hit");
+        if (_hp > 0)
+        {
+            // 히트 애니메이션 재생
+            _anim.SetTrigger("hit");
 
-        RefreshHpBar();
+            RefreshHpBar();
+        }
+        else
+        {
+            // 죽음 애니메이션 재생
+            _anim.SetBool("die", true);
+            Invoke("Disappear", 1.5f);
+        }
+        
+    }
+    void Disappear()
+    {
+        Destroy(gameObject);
+        Destroy(_hpBarTrans.gameObject);
     }
 
     void CheckDistance() // 거리를 체크하는 함수
     {
+        
+        
         // 나와 적 캐릭터 간의 거리를 계산 해서, 설정된 공격범위 안에 들어오면 공격개시
 
         float pos1 = transform.position.x; // 내 캐릭터의 위치
@@ -163,29 +186,41 @@ public class Unit : MonoBehaviour
         // Mathf는 유니티에서 제공해주는데 이 f의 뜻은 float라는 뜻임
 
 
-        if (distance < _attackRange) // 나와 적 캐리터간의 거리가 공격범위 안에 들어오면
+        if (distance < _attackRange /*&& _hp > 0*/) // 나와 적 캐리터간의 거리가 공격범위 안에 들어오면
         {
             // 공격
             _anim.SetBool("attack", true);
-
-            // 데미지 처리
-            //Unit enemyUnit = _enemyObj.GetComponent<Unit>();
-            //enemyUnit.DoDamage(10);
         }
         else // 공격범위를 벗어나면
         {
             _anim.SetBool("attack", false);
         }
     }
+
+    public void OnAttack()
+    {
+        Attack();
+    }
+
+    protected virtual void Attack()
+    {
+       
+    }
     void OnTriggerEnter2D(Collider2D collison)
     {
-        Debug.Log("나는 누구인가? " + gameObject.name);
-
-        Debug.Log("나를 충돌한 물체는 무엇인가? " + collison.gameObject.name);
+        Debug.Log("나(" + gameObject.name + ")와 충돌한 물체는 무엇인가? " + collison.gameObject.name);
 
         if(collison.gameObject.name == "AttackCol")
         {
             DoDamage(10);
+            
         }
     }
+
+
+    void Test(params object[] o)
+    {
+
+    }
+    
 }

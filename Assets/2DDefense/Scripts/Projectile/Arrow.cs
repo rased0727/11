@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archer : Unit
+public class Arrow : Projectile
 {
-    //_attackRange = 3.75f;
+    
 }
