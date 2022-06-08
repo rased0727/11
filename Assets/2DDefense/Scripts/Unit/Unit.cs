@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
     public float _attackRange = 0.75f;
 
     public GameObject _enemyObj;
+    public GameObject _hitEffectTemplate;
 
     Rigidbody2D _rigid;
     SpriteRenderer _renderer;
@@ -52,7 +53,8 @@ public class Unit : MonoBehaviour
 
     }
 
-    void RefreshHpBar() // 체력바 초기화 및 연동
+    // 체력바 초기화 및 연동
+    void RefreshHpBar() 
     {
         // 체력바 초기화 및 연동
         if (_hpBarTrans != null)
@@ -157,7 +159,7 @@ public class Unit : MonoBehaviour
             // 히트 애니메이션 재생
             _anim.SetTrigger("hit");
 
-            RefreshHpBar();
+            
         }
         else
         {
@@ -165,7 +167,23 @@ public class Unit : MonoBehaviour
             _anim.SetBool("die", true);
             Invoke("Disappear", 1.5f);
         }
-        
+
+        // 체력 연동 함수 호출
+        RefreshHpBar();
+
+        // 피격 이펙트 재생 함수 호출
+        if (_hitEffectTemplate != null)
+        {
+            PlayHitEffect();
+        }
+    }
+    
+    // 피격 이펙트 재생
+    void PlayHitEffect()
+    {
+        GameObject hitEffObj = Instantiate(_hitEffectTemplate);
+        hitEffObj.SetActive(true);
+        hitEffObj.transform.position = transform.position;
     }
     void Disappear()
     {
@@ -210,10 +228,19 @@ public class Unit : MonoBehaviour
     {
         Debug.Log("나(" + gameObject.name + ")와 충돌한 물체는 무엇인가? " + collison.gameObject.name);
 
-        if(collison.gameObject.name == "AttackCol")
+        //if(collison.gameObject.name == "AttackCol" || collison.gameObject.name == "Arrow")
+
+        if(collison.gameObject.tag == "AttackCol")
         {
             DoDamage(10);
-            
+
+            // 화살 명중이 된 후 화살 없애주기
+            Arrow arrow = collison.gameObject.GetComponent<Arrow>();
+            if(arrow != null)
+            {
+                Destroy(arrow.gameObject);
+            }
+
         }
     }
 

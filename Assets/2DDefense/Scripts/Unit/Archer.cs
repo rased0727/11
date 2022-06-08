@@ -14,6 +14,7 @@ public class Archer : Unit
             GameObject arrowObj = Instantiate(_arrowTemplate);
             arrowObj.SetActive(true);
             arrowObj.transform.position = _firePosTrans.position;
+            arrowObj.name = "Arrow";
         }
        
 
