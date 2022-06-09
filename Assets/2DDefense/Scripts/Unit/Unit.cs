@@ -2,18 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Unit : MonoBehaviour
+public class Unit : MapObject
 {
-    public RectTransform _hpBarTrans;
-    public Vector3 _hpBarOffset;
-    public int _maxHp = 100;
-    public int _hp = 0;
+    public GameObject[] _enemyList;
 
     public float _speed = 1.0f; // 캐릭터 이동속도
     public float _attackRange = 0.75f;
 
     public GameObject _enemyObj;
-    public GameObject _hitEffectTemplate;
+    
 
     Rigidbody2D _rigid;
     SpriteRenderer _renderer;
@@ -21,8 +18,11 @@ public class Unit : MonoBehaviour
     BoxCollider2D _attackCol;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+
+        base.Start(); // 부모의 Start() 함수를 먼저 실행해야 체력초기화가 됨
+
         _rigid = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
@@ -43,9 +43,7 @@ public class Unit : MonoBehaviour
         }
         
 
-        //체력 초기화
-        _hp = _maxHp;
-        RefreshHpBar();
+
 
 
 
@@ -53,22 +51,13 @@ public class Unit : MonoBehaviour
 
     }
 
-    // 체력바 초기화 및 연동
-    void RefreshHpBar() 
-    {
-        // 체력바 초기화 및 연동
-        if (_hpBarTrans != null)
-        {
-            // fill 이미지 컴포넌트 찾기
-            Image fillImg = _hpBarTrans.Find("fill").GetComponent<Image>();
-            // 최대 체력 대비 현재 체력 비율을 fillAmount 에 넣어줌
-            fillImg.fillAmount = (float)_hp / (float)_maxHp; // fillAmount는 float 이기 때문에 _hp와 _maxHp의 경우 int 여서 형변환 해줌.
-        }
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
+        base.UpdateHpBarPos();
+
         // rigidbody 를 건드려서 앞으로 이동
 
         // 캐릭터를 이동하는 2가지 방법
@@ -98,8 +87,10 @@ public class Unit : MonoBehaviour
             }
             _rigid.velocity = vel;
         }
-       
-       
+
+
+        // 적을 찾는 메서드
+        _enemyObj = FindEnemy();
         
 
         if (_enemyObj != null) // 적이 설정되어 있을때만
@@ -110,29 +101,26 @@ public class Unit : MonoBehaviour
         {
             _anim.SetBool("attack", false);
         }
-
-        UpdateHpBarPos();
-
     } // Update() 메서드 종료
-
-    void UpdateHpBarPos() // 체력바가 항상 유닛을 따라 다니도록 해주는 메서드
+    
+    GameObject FindEnemy()
     {
-        // 이 유닛의 위치를 가져와서 (월드 좌표)
-        Vector3 unitPos = transform.position;
+        GameObject enemyObj = null;
 
-        // 위에서 가져온 월드좌표를 UI좌표(스크린 좌표)로 변환
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(unitPos + _hpBarOffset);
-
-        // 혹시 _hpBarTrans 객체에 아직 아무것도 들어 있지 않다면 널체크
-        if(_hpBarTrans != null)
+        // 적을 찾는 로직 구현
+        // 적 리스트 중 가장 첫번째 적 찾기
+        if(_enemyList != null && _enemyList.Length > 0)
         {
-            // 체력바의 UI좌표를 위에서 변환한 캐릭터의 UI좌표로 바꿔줌
-            _hpBarTrans.position = screenPos;
+            enemyObj = _enemyList[0];
         }
-        
+
+
+        return enemyObj;
 
 
     }
+   
+
     public void SetAttackCol(int on) // 1은 on, 0은 off로 약속
     {
         // 널 체크
@@ -149,10 +137,9 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void DoDamage(int damage)
+    public override void DoDamage(int damage)
     {
-        _hp -= damage;
-        _hp = Math.Max(_hp, 0); // _hp와 0 을 비교해서 큰 값을 넣어준다. 즉 최소값을 0으로 제한하는 코드
+        base.DoDamage(damage);
 
         if (_hp > 0)
         {
@@ -167,29 +154,10 @@ public class Unit : MonoBehaviour
             _anim.SetBool("die", true);
             Invoke("Disappear", 1.5f);
         }
-
-        // 체력 연동 함수 호출
-        RefreshHpBar();
-
-        // 피격 이펙트 재생 함수 호출
-        if (_hitEffectTemplate != null)
-        {
-            PlayHitEffect();
-        }
     }
     
-    // 피격 이펙트 재생
-    void PlayHitEffect()
-    {
-        GameObject hitEffObj = Instantiate(_hitEffectTemplate);
-        hitEffObj.SetActive(true);
-        hitEffObj.transform.position = transform.position;
-    }
-    void Disappear()
-    {
-        Destroy(gameObject);
-        Destroy(_hpBarTrans.gameObject);
-    }
+    
+    
 
     void CheckDistance() // 거리를 체크하는 함수
     {
@@ -224,30 +192,4 @@ public class Unit : MonoBehaviour
     {
        
     }
-    void OnTriggerEnter2D(Collider2D collison)
-    {
-        Debug.Log("나(" + gameObject.name + ")와 충돌한 물체는 무엇인가? " + collison.gameObject.name);
-
-        //if(collison.gameObject.name == "AttackCol" || collison.gameObject.name == "Arrow")
-
-        if(collison.gameObject.tag == "AttackCol")
-        {
-            DoDamage(10);
-
-            // 화살 명중이 된 후 화살 없애주기
-            Arrow arrow = collison.gameObject.GetComponent<Arrow>();
-            if(arrow != null)
-            {
-                Destroy(arrow.gameObject);
-            }
-
-        }
-    }
-
-
-    void Test(params object[] o)
-    {
-
-    }
-    
 }
