@@ -4,10 +4,8 @@ using UnityEngine.UI;
 
 public class Unit : MapObject
 {
-    public GameObject[] _enemyList;
-
     public float _speed = 1.0f; // 캐릭터 이동속도
-    public float _attackRange = 0.75f;
+    public float _attackRange = 1.75f;
 
     public GameObject _enemyObj;
     
@@ -107,15 +105,20 @@ public class Unit : MapObject
     {
         GameObject enemyObj = null;
 
-        // 적을 찾는 로직 구현
-        // 적 리스트 중 가장 첫번째 적 찾기
-        if(_enemyList != null && _enemyList.Length > 0)
+        // 적 진영의 적을 찾는 로직 구현
+        // 적 진영의 리스트 중 가장 첫번째 적 찾기
+        if (_team == Team.BLUE)
         {
-            enemyObj = _enemyList[0];
+            if (_gameDir._red_List != null && _gameDir._red_List.Length > 0)
+                enemyObj = _gameDir._red_List[0];
         }
-
-
+        else if (_team == Team.RED)
+        {
+            if (_gameDir._blue_List != null && _gameDir._blue_List.Length > 0)
+                enemyObj = _gameDir._blue_List[0];
+        }
         return enemyObj;
+        
 
 
     }

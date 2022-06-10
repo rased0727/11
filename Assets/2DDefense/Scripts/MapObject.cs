@@ -4,8 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum Team
+{
+    NONE,
+
+    BLUE,
+    RED,
+}
+
 public class MapObject : MonoBehaviour
 {
+    public Team _team;
+    public GameDirector _gameDir;
+
     public RectTransform _hpBarTrans;
     public Vector3 _hpBarOffset;
     public int _maxHp = 100;
@@ -19,6 +31,22 @@ public class MapObject : MonoBehaviour
         _hp = _maxHp;
         RefreshHpBar();
         UpdateHpBarPos();
+
+        //팀 초기화
+        _gameDir = transform.parent.parent.GetComponent<GameDirector>();
+
+        if(transform.parent != null)
+        {
+            if (transform.parent.gameObject.name == "Red")
+            {
+                _team = Team.RED;
+            }
+            else if (transform.parent.gameObject.name == "Blue")
+            {
+                _team = Team.BLUE;
+            }
+        }
+        
     }
     
     // 체력바 초기화 및 연동
@@ -75,22 +103,55 @@ public class MapObject : MonoBehaviour
     }
     protected void Disappear()
     {
+        if (_team == Team.RED)
+        {
+            List<GameObject> redList = new List<GameObject>(_gameDir._red_List);
+            redList.Remove(gameObject);
+
+            _gameDir._red_List = redList.ToArray();
+        }
+        else if (_team == Team.BLUE)
+        {
+            List<GameObject> blueList = new List<GameObject>(_gameDir._blue_List);
+            blueList.Remove(gameObject);
+
+            _gameDir._blue_List = blueList.ToArray();
+        }
         Destroy(gameObject);
-        Destroy(_hpBarTrans.gameObject);
+
+        if (_hpBarTrans != null)
+        {
+            Destroy(_hpBarTrans.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collison)
     {
         if (collison.gameObject.tag == "AttackCol")
         {
-            DoDamage(10);
-
-            // 화살 명중이 된 후 화살 없애주기
+            
             Arrow arrow = collison.gameObject.GetComponent<Arrow>();
-            if (arrow != null)
+            
+            if (arrow != null) // 화살인 경우
             {
-                Destroy(arrow.gameObject);
+                if (arrow._team == _team) // 같은 팀일 경우 통과
+                {
+                    return;
+                }
+                Destroy(arrow.gameObject); // 다른 팀일 경우 화살을 충돌 시킨후 없애주기
             }
+            else // 화살이 아닌 경우
+            {
+                MapObject attacker = collison.transform.parent.GetComponent<MapObject>();
+                if (attacker != null)
+                {
+                    if (attacker._team == _team)
+                    {
+                        return;
+                    }
+                }
+            }
+            DoDamage(10);
 
         }
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 // Projectile = 발사체, 날아가는 공격 물체를 구현하는 용도
 public class Projectile : MonoBehaviour
 {
+    public Team _team;
     Rigidbody2D _rigid;
     public float _flyForce = 500.0f;
 
