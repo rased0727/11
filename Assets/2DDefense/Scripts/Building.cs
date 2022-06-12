@@ -18,8 +18,8 @@ public class Building : MapObject
             // 체력이 0이 되었으니 폭파 이펙트 
             GameObject fireEffObj = Instantiate(_fireEffTemplate);
             fireEffObj.SetActive(true);
-            fireEffObj.transform.position = transform.position;
-            Invoke("Disappear", 1.5f);
+            fireEffObj.transform.position = transform.position; // 현재 폭파되는 건물에 폭파 객체를 심어줌
+            Invoke("Disappear", 1.5f); // 1.5초의 딜레이를 주고 MapObject 클래스의 Disappear 함수 호출해서 객체 제거
         }
 
     }

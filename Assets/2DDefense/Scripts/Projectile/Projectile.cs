@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 {
     public Team _team;
     Rigidbody2D _rigid;
-    public float _flyForce = 500.0f;
+    public float _flyForce = 500.0f; // x축으로의 투사체 속도
 
     // Start is called before the first frame update
     void Start()

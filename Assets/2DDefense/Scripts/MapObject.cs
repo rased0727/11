@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum Team
+public enum Team // 열거형 상수로 진영을 정의해두고 아래에서 부모객체의 이름을 파악 후 진영 나눠주기
 {
     NONE,
 
@@ -37,7 +37,7 @@ public class MapObject : MonoBehaviour
 
         if(transform.parent != null)
         {
-            if (transform.parent.gameObject.name == "Red")
+            if (transform.parent.gameObject.name == "Red") // 모든 유닛이나 건물들은 진영 이름을 갖고 있는 부모객체를 갖고 있는데, 그것으로 진영을 소스코드에서 배치해준다.
             {
                 _team = Team.RED;
             }
