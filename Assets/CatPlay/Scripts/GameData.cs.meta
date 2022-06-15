@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 74987cecfe300fc4a9fd204441c322f9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _mission_daily_csv: {fileID: 4900000, guid: 4e1ab35d7e6a3354988c35957a7acc35, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
