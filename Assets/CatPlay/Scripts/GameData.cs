@@ -6,12 +6,15 @@ using System.IO;
 
 public class GameData : MonoBehaviour
 {
+
+
     
     public TextAsset _mission_daily_csv; // 데일리 미션을 가져오는 변수
     public List<GameData_MissionDaily> _mission_daily_data;
 
     void Start()
     {
+
         _mission_daily_data = new List<GameData_MissionDaily>();
 
         string text = _mission_daily_csv.text;
