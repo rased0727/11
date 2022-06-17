@@ -19,49 +19,49 @@ public class Move : MonoBehaviour
             return;
         }
         
-        /* ÇÃ·¡ÇÇ¹öµå´Â ÁÂ¿ì»óÇÏ ÀÌµ¿ÀÌ ÇÊ¿ä ¾ø±â ¶§¹®¿¡ ÀüÃ¼ ÁÖ¼®Ã³¸®
-        // GetKey´Â Áö¼ÓÀûÀ¸·Î ´©¸¦¶§
-        // GetkeyDownÀº ÇÑ¹ø ´­·¶À» ¶§
-        // GetKeyUpÀº ÇÑ¹ø ´©¸£°í ¶®À» ¶§
-        if( Input.GetKey(KeyCode.LeftArrow) ) // ¿ŞÂÊ È­»ìÇ¥¸¦ ´©¸£°í ÀÖ´Â ÁßÀÌ¸é
+        /* í”Œë˜í”¼ë²„ë“œëŠ” ì¢Œìš°ìƒí•˜ ì´ë™ì´ í•„ìš” ì—†ê¸° ë•Œë¬¸ì— ì „ì²´ ì£¼ì„ì²˜ë¦¬
+        // GetKeyëŠ” ì§€ì†ì ìœ¼ë¡œ ëˆ„ë¥¼ë•Œ
+        // GetkeyDownì€ í•œë²ˆ ëˆŒë €ì„ ë•Œ
+        // GetKeyUpì€ í•œë²ˆ ëˆ„ë¥´ê³  ë• ì„ ë•Œ
+        if( Input.GetKey(KeyCode.LeftArrow) ) // ì™¼ìª½ í™”ì‚´í‘œë¥¼ ëˆ„ë¥´ê³  ìˆëŠ” ì¤‘ì´ë©´
         {
-            //transform.position.x = transform.position.x - 1.0f; // ÀÌ°Ç ¿ø·¡ µÇ¾ß ÇÏÁö¸¸ transform.position Àº Á÷Á¢ ¼öÁ¤ÀÌ ºÒ°¡´É
-            Vector3 pos = transform.position; // pos¿¡ Vector3 ¶ó´Â Å¬·¡½º¸¦ ´ã¾ÆµÎ´Â º¹¼öÀÇ µ¥ÀÌÅÍ°¡ µé¾îÀÖ´Â º¯¼ö¶ó°í »ı°¢ÇÏ¸é ÆíÇÔ
+            //transform.position.x = transform.position.x - 1.0f; // ì´ê±´ ì›ë˜ ë˜ì•¼ í•˜ì§€ë§Œ transform.position ì€ ì§ì ‘ ìˆ˜ì •ì´ ë¶ˆê°€ëŠ¥
+            Vector3 pos = transform.position; // posì— Vector3 ë¼ëŠ” í´ë˜ìŠ¤ë¥¼ ë‹´ì•„ë‘ëŠ” ë³µìˆ˜ì˜ ë°ì´í„°ê°€ ë“¤ì–´ìˆëŠ” ë³€ìˆ˜ë¼ê³  ìƒê°í•˜ë©´ í¸í•¨
             
-            // ¹æ¹ı1 : new¶ó´Â Å°¿öµå·Î °´Ã¼È­ ÇÏ°í »ç¿ë
+            // ë°©ë²•1 : newë¼ëŠ” í‚¤ì›Œë“œë¡œ ê°ì²´í™” í•˜ê³  ì‚¬ìš©
             transform.position = new Vector3(pos.x - 0.01f, pos.y, pos.z);
 
-            // ¹æ¹ı2 : ±×³É ¹Ù·Î Å¬·¡½ºº¯¼öÀÇ °ªÀ» ¼öÁ¤µµ °¡´É
+            // ë°©ë²•2 : ê·¸ëƒ¥ ë°”ë¡œ í´ë˜ìŠ¤ë³€ìˆ˜ì˜ ê°’ì„ ìˆ˜ì •ë„ ê°€ëŠ¥
             // pos.x = pos.x - 0.1f;
             // transform.position = pos;
 
         }
-        if (Input.GetKey(KeyCode.RightArrow)) // ¿ŞÂÊ È­»ìÇ¥¸¦ ´©¸£°í ÀÖ´Â ÁßÀÌ¸é
+        if (Input.GetKey(KeyCode.RightArrow)) // ì™¼ìª½ í™”ì‚´í‘œë¥¼ ëˆ„ë¥´ê³  ìˆëŠ” ì¤‘ì´ë©´
         {
-            Vector3 pos = transform.position; // pos¿¡ Vector3 ¶ó´Â Å¬·¡½º¸¦ ´ã¾ÆµÎ´Â º¹¼öÀÇ µ¥ÀÌÅÍ°¡ µé¾îÀÖ´Â º¯¼ö¶ó°í »ı°¢ÇÏ¸é ÆíÇÔ
+            Vector3 pos = transform.position; // posì— Vector3 ë¼ëŠ” í´ë˜ìŠ¤ë¥¼ ë‹´ì•„ë‘ëŠ” ë³µìˆ˜ì˜ ë°ì´í„°ê°€ ë“¤ì–´ìˆëŠ” ë³€ìˆ˜ë¼ê³  ìƒê°í•˜ë©´ í¸í•¨
 
-            // ¹æ¹ı1 : new¶ó´Â Å°¿öµå·Î °´Ã¼È­ ÇÏ°í »ç¿ë
+            // ë°©ë²•1 : newë¼ëŠ” í‚¤ì›Œë“œë¡œ ê°ì²´í™” í•˜ê³  ì‚¬ìš©
             //transform.position = new Vector3(pos.x + 0.01f, pos.y, pos.z);
 
-            // ¹æ¹ı2 : ±×³É ¹Ù·Î Å¬·¡½ºº¯¼öÀÇ °ªÀ» ¼öÁ¤µµ °¡´É
+            // ë°©ë²•2 : ê·¸ëƒ¥ ë°”ë¡œ í´ë˜ìŠ¤ë³€ìˆ˜ì˜ ê°’ì„ ìˆ˜ì •ë„ ê°€ëŠ¥
             pos.x = pos.x + 0.01f;
             transform.position = pos;
 
 
         }
-        if (Input.GetKey(KeyCode.UpArrow)) // ¿ŞÂÊ È­»ìÇ¥¸¦ ´©¸£°í ÀÖ´Â ÁßÀÌ¸é
+        if (Input.GetKey(KeyCode.UpArrow)) // ì™¼ìª½ í™”ì‚´í‘œë¥¼ ëˆ„ë¥´ê³  ìˆëŠ” ì¤‘ì´ë©´
         {
-            Vector3 pos = transform.position; // pos¿¡ Vector3 ¶ó´Â Å¬·¡½º¸¦ ´ã¾ÆµÎ´Â º¹¼öÀÇ µ¥ÀÌÅÍ°¡ µé¾îÀÖ´Â º¯¼ö¶ó°í »ı°¢ÇÏ¸é ÆíÇÔ
+            Vector3 pos = transform.position; // posì— Vector3 ë¼ëŠ” í´ë˜ìŠ¤ë¥¼ ë‹´ì•„ë‘ëŠ” ë³µìˆ˜ì˜ ë°ì´í„°ê°€ ë“¤ì–´ìˆëŠ” ë³€ìˆ˜ë¼ê³  ìƒê°í•˜ë©´ í¸í•¨
 
-            // ¹æ¹ı1 : new¶ó´Â Å°¿öµå·Î °´Ã¼È­ ÇÏ°í »ç¿ë
+            // ë°©ë²•1 : newë¼ëŠ” í‚¤ì›Œë“œë¡œ ê°ì²´í™” í•˜ê³  ì‚¬ìš©
             transform.position = new Vector3(pos.x, pos.y + 0.01f, pos.z);
 
         }
-        if (Input.GetKey(KeyCode.DownArrow)) // ¿ŞÂÊ È­»ìÇ¥¸¦ ´©¸£°í ÀÖ´Â ÁßÀÌ¸é
+        if (Input.GetKey(KeyCode.DownArrow)) // ì™¼ìª½ í™”ì‚´í‘œë¥¼ ëˆ„ë¥´ê³  ìˆëŠ” ì¤‘ì´ë©´
         {
-            Vector3 pos = transform.position; // pos¿¡ Vector3 ¶ó´Â Å¬·¡½º¸¦ ´ã¾ÆµÎ´Â º¹¼öÀÇ µ¥ÀÌÅÍ°¡ µé¾îÀÖ´Â º¯¼ö¶ó°í »ı°¢ÇÏ¸é ÆíÇÔ
+            Vector3 pos = transform.position; // posì— Vector3 ë¼ëŠ” í´ë˜ìŠ¤ë¥¼ ë‹´ì•„ë‘ëŠ” ë³µìˆ˜ì˜ ë°ì´í„°ê°€ ë“¤ì–´ìˆëŠ” ë³€ìˆ˜ë¼ê³  ìƒê°í•˜ë©´ í¸í•¨
 
-            // ¹æ¹ı1 : new¶ó´Â Å°¿öµå·Î °´Ã¼È­ ÇÏ°í »ç¿ë
+            // ë°©ë²•1 : newë¼ëŠ” í‚¤ì›Œë“œë¡œ ê°ì²´í™” í•˜ê³  ì‚¬ìš©
             transform.position = new Vector3(pos.x, pos.y - 0.01f, pos.z);
 
         }
@@ -70,20 +70,20 @@ public class Move : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Äİ¸®Àü ÀÌº¥Æ® ¹ß»ı : " + collision.gameObject.name);
+        Debug.Log("ì½œë¦¬ì „ ì´ë²¤íŠ¸ ë°œìƒ : " + collision.gameObject.name);
 
-        // GameManager¿¡ Game Over »ç½ÇÀ» ¾Ë·ÁÁÖ±â¸¸ ÇÏ¸é µÊ
+        // GameManagerì— Game Over ì‚¬ì‹¤ì„ ì•Œë ¤ì£¼ê¸°ë§Œ í•˜ë©´ ë¨
         _gameMgr._isGameOver = true;
         _gameMgr.OnGameOver();
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Æ®¸®°Å ÀÌº¥Æ® ¹ß»ı : " + collision.gameObject.name);
+        Debug.Log("íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸ ë°œìƒ : " + collision.gameObject.name);
 
         _gameMgr._score = _gameMgr._score + 1;
-        //_gameMgr._score += 1; // ÀÌ·¸°Ô ¾²°Å³ª
-        //_gameMgr._score++; // ÀÌ·¸°Ô ½áµµ µÊ
+        //_gameMgr._score += 1; // ì´ë ‡ê²Œ ì“°ê±°ë‚˜
+        //_gameMgr._score++; // ì´ë ‡ê²Œ ì¨ë„ ë¨
 
 
 
