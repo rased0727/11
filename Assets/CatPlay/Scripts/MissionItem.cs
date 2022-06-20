@@ -26,7 +26,8 @@ namespace CatPlay
 			// 진행횟수, 총 완료 횟수(ClearCount)
 			int currentCount = 0;
 			int totalCount = data.clearCount;
-			_clearCountTxt.text = string.Format("{0}/{1}", currentCount,totalCount);
+			//_clearCountTxt.text = string.Format("{0}/{1}", currentCount,totalCount);
+			_clearCountTxt.text = string.Format($"{currentCount}/{totalCount}");
 
 			// 보상
 			_rewardTxt.text = data.gem_reward.ToString();
