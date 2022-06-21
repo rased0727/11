@@ -73,8 +73,12 @@ namespace CatPlay
 				_anim.SetBool("moving", true);
 				
 			}
-			Move(h, v);
-			Flip(h);
+			if (_anim.GetBool("eating") == false)
+            {
+				Move(h, v);
+				Flip(h);
+			}
+			
 
 
 
@@ -113,32 +117,47 @@ namespace CatPlay
 				_renderer.flipX = true;
 			}
         }
-		void OnCollisionEnter2D(Collision2D collision)
+
+		void Eat()
         {
-			if(collision.gameObject.name == "Dish")
-            {
-				StartEat();
-			}
-			
-		}
-		void StartEat()
-        {
-			//_anim.SetTrigger("eat");
-			//PlayEmoticon("emote_sweat", 5.0f);
 			_emoteSweat.SetActive(true);
+			_anim.SetBool("eating", true);
+
 			Invoke("StopEat", 5.0f);
+
 		}
 		void StopEat()
         {
-			//PlayEmoticon("Happy", 3.0f);
 			_emoteSweat.SetActive(false);
 			_emoteHappy.SetActive(true);
+			_anim.SetBool("eating", false);
+
 			Invoke("StopHappy", 3.0f);
 		}
 		void StopHappy()
         {
 			_emoteHappy.SetActive(false);
 			Debug.Log("됐나?");
+		}
+		void OnCollisionEnter2D(Collision2D collision)
+		{
+			if (collision.gameObject.name == "Dish")
+			{
+				Eat();
+			}
+
+		}
+		void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (collision.gameObject.name.Contains("Heart"))
+			{
+				Destroy(collision.gameObject);
+			}
+			else if (collision.gameObject.name.Contains("Coin"))
+			{
+				Destroy(collision.gameObject);
+			}
+
 		}
 
 	}
