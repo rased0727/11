@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-// ´«¿¡ º¸ÀÌÁö´Â ¾ÊÁö¸¸ °ÔÀÓÀÇ Èå¸§À» Á¦¾îÇÏ´Â Å¬·¡½º
+// ëˆˆì— ë³´ì´ì§€ëŠ” ì•Šì§€ë§Œ ê²Œì„ì˜ íë¦„ì„ ì œì–´í•˜ëŠ” í´ë˜ìŠ¤
 public class GameManager : MonoBehaviour
 {
     public GameObject _introUI;
@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D _birdRigid;
     public PipeManager _pipeMgr;
 
-    public bool _isIntro = true; // ÀÎÆ®·Î »óÅÂ¸¦ ³ªÅ¸³¿
-    public bool _isGameOver = false; // °ÔÀÓ¿À¹ö »óÅÂ¸¦ ³ªÅ¸³¿
+    public bool _isIntro = true; // ì¸íŠ¸ë¡œ ìƒíƒœë¥¼ ë‚˜íƒ€ëƒ„
+    public bool _isGameOver = false; // ê²Œì„ì˜¤ë²„ ìƒíƒœë¥¼ ë‚˜íƒ€ëƒ„
 
     public Text _scoreNumberText;
     public int _score = 0;
@@ -33,22 +33,22 @@ public class GameManager : MonoBehaviour
         Transform scoreNumberTrans = _playUI.transform.Find("Txt_ScoreNumber");
         _scoreNumberText = scoreNumberTrans.gameObject.GetComponent<Text>();
 
-        // ½Ã°£ÀÌ ¿À·¡ °É·Á¼­ ¹ØÀÇ ¶óÀÎÀº ¾È¾²°í, À§ Å¬·¡½ºº¯¼ö(¸â¹öº¯¼ö)¸¦ ¼±¾ğ ÈÄ ÀÎ½ºÆåÅÍ Ã¢¿¡¼­ µå·¡±×¾Ø µå·ÓÀ» ÇÔ
-        // ±Ùµ¥ ¸¸¾à ½½·ÔÀ» ÂüÁ¶ ¾ÈÇÏ¸é Null reference error °¡ ³ª¿È
+        // ì‹œê°„ì´ ì˜¤ë˜ ê±¸ë ¤ì„œ ë°‘ì˜ ë¼ì¸ì€ ì•ˆì“°ê³ , ìœ„ í´ë˜ìŠ¤ë³€ìˆ˜(ë©¤ë²„ë³€ìˆ˜)ë¥¼ ì„ ì–¸ í›„ ì¸ìŠ¤í™í„° ì°½ì—ì„œ ë“œë˜ê·¸ì•¤ ë“œë¡­ì„ í•¨
+        // ê·¼ë° ë§Œì•½ ìŠ¬ë¡¯ì„ ì°¸ì¡° ì•ˆí•˜ë©´ Null reference error ê°€ ë‚˜ì˜´
         //_introUI = GameObject.Find("UI_intro");
 
 
-        // 1. UI Ã³¸®
+        // 1. UI ì²˜ë¦¬
         _playUI.SetActive(false);
         _gameOverUI.SetActive(false);
         _introUI.SetActive(true);
 
-        // 2. Áß·Â(¹°¸®) ºñÈ°¼ºÈ­
-        // ¹Ù·Î ¾Æ·¡ ¶óÀÎÀ» »ç¿ëÇÏÁö ¾Ê´Â ÀÌÀ¯´Â ½Ã°£ÀÌ ¿À·¡ °É·Á¼­
+        // 2. ì¤‘ë ¥(ë¬¼ë¦¬) ë¹„í™œì„±í™”
+        // ë°”ë¡œ ì•„ë˜ ë¼ì¸ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ì´ìœ ëŠ” ì‹œê°„ì´ ì˜¤ë˜ ê±¸ë ¤ì„œ
         //_birdRigid = GameObject.Find("bird").GetComponent < Rigidbody2D() >;
         _birdRigid.simulated = false;
 
-        // 3. À¯Àú ÀÔ·Â ºñÈ°¼ºÈ­
+        // 3. ìœ ì € ì…ë ¥ ë¹„í™œì„±í™”
         _isIntro = true;
 
     }
@@ -61,45 +61,45 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // °ÔÀÓ½ÃÀÛ ¹öÆ° ÀÌº¥Æ® ÇÔ¼ö. ÀÌº¥Æ® ÇÔ¼ö´Â °ü·Ê»ó OnÀ» »ç¿ëÇÔ
+    // ê²Œì„ì‹œì‘ ë²„íŠ¼ ì´ë²¤íŠ¸ í•¨ìˆ˜. ì´ë²¤íŠ¸ í•¨ìˆ˜ëŠ” ê´€ë¡€ìƒ Onì„ ì‚¬ìš©í•¨
     public void OnClick_GameStart()
     {
-        Debug.Log("°ÔÀÓ ½ÃÀÛ ¹öÆ° ´­¸²!!!");
+        Debug.Log("ê²Œì„ ì‹œì‘ ë²„íŠ¼ ëˆŒë¦¼!!!");
 
-        // ÀÎÆ®·Î UI¸¦ ²¨ÁÖ°í, ÇÃ·¹ÀÌ UI¸¦ ÄÑÁÜ
+        // ì¸íŠ¸ë¡œ UIë¥¼ êº¼ì£¼ê³ , í”Œë ˆì´ UIë¥¼ ì¼œì¤Œ
         _introUI.SetActive(false);
         _playUI.SetActive(true);
        
-        // 2. Áß·Â(¹°¸®) È°¼ºÈ­
+        // 2. ì¤‘ë ¥(ë¬¼ë¦¬) í™œì„±í™”
         _birdRigid.simulated = true;
 
-        // 3. À¯Àú ÀÔ·Â ºñÈ°¼ºÈ­
+        // 3. ìœ ì € ì…ë ¥ ë¹„í™œì„±í™”
         _isIntro = false;
 
 
-        // ÆÄÀÌÇÁ »ı¼º ½ÃÀÛ
+        // íŒŒì´í”„ ìƒì„± ì‹œì‘
         _pipeMgr.Start_MakePipeSet();
     }
 
-    // °ÔÀÓ¿À¹ö ÀÌº¥Æ® ÇÔ¼ö
+    // ê²Œì„ì˜¤ë²„ ì´ë²¤íŠ¸ í•¨ìˆ˜
     public void OnGameOver()
     {
-        Debug.Log("OnGameOverÇÔ¼ö È£Ãâ");
+        Debug.Log("OnGameOverí•¨ìˆ˜ í˜¸ì¶œ");
         
-        // ÇÃ·¹ÀÌ UI¸¦ ²¨ÁÖ°í
+        // í”Œë ˆì´ UIë¥¼ êº¼ì£¼ê³ 
         _playUI.SetActive(false);
 
-        // °ÔÀÓ¿À¹ö UI¸¦ ÄÑÁØ´Ù
+        // ê²Œì„ì˜¤ë²„ UIë¥¼ ì¼œì¤€ë‹¤
         _gameOverUI.SetActive(true);
 
-        // ±×¸®°í Áß·ÂÀ» ºñÈ°¼ºÈ­ ½ÃÄÑÁØ´Ù
+        // ê·¸ë¦¬ê³  ì¤‘ë ¥ì„ ë¹„í™œì„±í™” ì‹œì¼œì¤€ë‹¤
         _birdRigid.simulated = false;
 
         _isGameOver = true;
     }
     public void OnClickRetry()
     {
-        Debug.Log("OnClickRetry ¹öÆ° ´©¸§");
+        Debug.Log("OnClickRetry ë²„íŠ¼ ëˆ„ë¦„");
         SceneManager.LoadScene("MyFirstGame");
     }
 

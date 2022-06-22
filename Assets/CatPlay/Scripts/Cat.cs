@@ -6,6 +6,8 @@ namespace CatPlay
 {
 	public class Cat : MonoBehaviour
 	{
+		public GameManager _gameMgr;
+
 		Rigidbody2D _rigid;
 		public float _speed = 10.0f;
 		SpriteRenderer _renderer;
@@ -131,6 +133,8 @@ namespace CatPlay
 			_emoteSweat.SetActive(false);
 			_emoteHappy.SetActive(true);
 			_anim.SetBool("eating", false);
+			_gameMgr.OnFinishEat();
+			_gameMgr.DropItem();
 
 			Invoke("StopHappy", 3.0f);
 		}
@@ -151,10 +155,12 @@ namespace CatPlay
 		{
 			if (collision.gameObject.name.Contains("Heart"))
 			{
+				_gameMgr.AddHeart(1);
 				Destroy(collision.gameObject);
 			}
 			else if (collision.gameObject.name.Contains("Coin"))
 			{
+				_gameMgr.AddCoin(1);
 				Destroy(collision.gameObject);
 			}
 
