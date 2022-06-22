@@ -67,15 +67,15 @@ namespace CatPlay
         {
             GameObject cloneCoinObj = Instantiate(_coinObj);
             cloneCoinObj.SetActive(true);
-            float randomCoinXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
-            float randomCoinYPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
-            cloneCoinObj.transform.position = new Vector3(randomCoinXPos, randomCoinYPos, 0);
+            float randomXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
+            float randomYPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
+            cloneCoinObj.transform.position = new Vector3(randomXPos, randomYPos, 0);
 
             GameObject cloneHeartObj = Instantiate(_heartObj);
             cloneHeartObj.SetActive(true);
-            float randomHeartXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
-            float randomHeartYPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
-            cloneHeartObj.transform.position = new Vector3(randomHeartXPos, randomHeartYPos, 0);
+            randomXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
+            randomYPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
+            cloneHeartObj.transform.position = new Vector3(randomXPos, randomYPos, 0);
 
         }
 
