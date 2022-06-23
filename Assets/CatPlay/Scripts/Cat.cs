@@ -6,6 +6,7 @@ namespace CatPlay
 {
 	public class Cat : MonoBehaviour
 	{
+		public const string ITEM_NAME_HEART = "Heart";
 		public GameManager _gameMgr;
 
 		Rigidbody2D _rigid;
@@ -37,6 +38,20 @@ namespace CatPlay
 			// Idle 랜덤 애니메이션 재생용 
 			float delay = Random.Range(3.0f, 10.0f);
 			Invoke("PlayIdle", delay);
+
+		}
+
+		// 거리재는 수학 연습용으로 강의 해주신 메서드
+		void CheckDistance()
+        {
+			Transform jarTrans = _gameMgr._worldObj.transform.Find("Item").transform.Find("Jar");
+
+			Vector2 catPos = transform.position;
+			Vector2 objPos = jarTrans.position;
+
+			float xDist = Mathf.Abs(catPos.x - objPos.x);
+			float yDist = Mathf.Abs(catPos.y - objPos.y);
+			float distance = Mathf.Sqrt(xDist * xDist + yDist * yDist);
 
 		}
 		void PlayIdle()
@@ -134,14 +149,14 @@ namespace CatPlay
 			_emoteHappy.SetActive(true);
 			_anim.SetBool("eating", false);
 			_gameMgr.OnFinishEat();
-			_gameMgr.DropItem();
+			_gameMgr.DropItem(transform);
 
 			Invoke("StopHappy", 3.0f);
 		}
 		void StopHappy()
         {
 			_emoteHappy.SetActive(false);
-			Debug.Log("됐나?");
+			
 		}
 		void OnCollisionEnter2D(Collision2D collision)
 		{

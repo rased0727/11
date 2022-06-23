@@ -63,8 +63,9 @@ namespace CatPlay
         {
             _dishObj.SetActive(false);
         }
-        public void DropItem()
+        public void DropItem(Transform target)
         {
+            /* 내가 했었던 랜덤 함수 
             GameObject cloneCoinObj = Instantiate(_coinObj);
             cloneCoinObj.SetActive(true);
             float randomXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
@@ -76,6 +77,29 @@ namespace CatPlay
             randomXPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
             randomYPos = UnityEngine.Random.Range(-_randomFloat, _randomFloat);
             cloneHeartObj.transform.position = new Vector3(randomXPos, randomYPos, 0);
+            */
+
+
+
+
+
+            GameObject cloneHeartObj = Instantiate(_heartObj);
+            cloneHeartObj.SetActive(true);
+
+            float deltaRandius = 0.3f;
+            float minRadius = 1.2f;
+
+            // Unit은 1을 뜻함. 즉 insideUnitCircle은 반지름이 1인 것임
+            Vector2 circleRange = UnityEngine.Random.insideUnitCircle * deltaRandius;
+
+            // 위의 원형의 벡터 길이를 1로 노멀라이즈 해줌
+            Vector2 normalVector = circleRange.normalized;
+
+            Vector2 randomPos = circleRange + normalVector * minRadius;
+
+            // 위에서 정해진 최종값을 포지션으로 해줌
+            cloneHeartObj.transform.position = target.position + new Vector3(randomPos.x, randomPos.y);
+            cloneHeartObj.gameObject.name = Cat.ITEM_NAME_HEART;
 
         }
 
