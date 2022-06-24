@@ -24,8 +24,6 @@ public class GameData : MonoBehaviour
             string line = reader.ReadLine(); // 두번째줄 부터 불러올때는 이렇게 한줄을 강제로 읽고 시작
             while ((line = reader.ReadLine()) != null) // 끝에 이르기까지 한줄씩 찍어옴
             {
-                Debug.Log("데이터 " + line);
-
                 // csv 값이므로 ',' seperator 로 데이터를 분리해서 저장
                 string[] record = line.Split(',');
 
