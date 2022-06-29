@@ -13,6 +13,8 @@ namespace CatPlay
         GameObject _dishObj;
         GameObject _coinObj;
         GameObject _heartObj;
+        GameObject _ExtBtnObj;
+        GameObject _testItemUIObj;
 
         // UI 요소들
         public Text _nowTimeText;
@@ -31,12 +33,17 @@ namespace CatPlay
             _dishObj = _worldObj.transform.Find("Item").Find("Dish").gameObject;
             _coinObj = _worldObj.transform.Find("Item").Find("Coin").gameObject;
             _heartObj = _worldObj.transform.Find("Item").Find("Heart").gameObject;
+            _testItemUIObj = _canvasObj.transform.Find("TestItemUI").gameObject;
+            _ExtBtnObj = _canvasObj.transform.Find("TestItemUI").Find("ExtBtn").gameObject;
+
 
 
             _heartText = _canvasObj.transform.Find("Title").transform.Find("HeartUI").transform.Find("Text").GetComponent<Text>();
             _coinText = _canvasObj.transform.Find("Title").transform.Find("CoinUI").transform.Find("Text").GetComponent<Text>();
             _heartText.text = "없음";
             _coinText.text = "없음";
+
+            _testItemUIObj.SetActive(false);
         }
 
         // Update is called once per frame
@@ -48,6 +55,14 @@ namespace CatPlay
         public void OnClick_Food()
         {
             _dishObj.SetActive(true);
+        }
+        public void OnClick_TestItem()
+        {
+            _testItemUIObj.SetActive(true);
+        }
+        public void OnClick_Ext()
+        {
+            _testItemUIObj.SetActive(false);
         }
         public void AddHeart(int count)
         {

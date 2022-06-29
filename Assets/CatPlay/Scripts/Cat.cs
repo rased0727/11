@@ -8,6 +8,7 @@ namespace CatPlay
 	{
 		public const string ITEM_NAME_HEART = "Heart";
 		public GameManager _gameMgr;
+		public AudioSource _catSound;
 
 		Rigidbody2D _rigid;
 		public float _speed = 10.0f;
@@ -57,18 +58,20 @@ namespace CatPlay
 		void PlayIdle()
         {
 			int random = Random.Range(2, 4); // 주사위가 아니면 2 아니면 3이 나옴. 랜덤 앞의 파라메터는 포함최소값, 뒤의 파라메터는 배제최대값임
-			/*if (random == 2)
-            {
+			if (random == 2)
 				_anim.SetTrigger("idle2");
-			}
-			else if(random == 3)
-            {
+			else if (random == 3)
+			{
 				_anim.SetTrigger("idle3");
+				_catSound.Play();
 			}
-			//위 수식을 아래처럼 오늘 배운 삼항 연산자로 바꿔 봄 */
+
+			/* 삼항 연산자 방식으로 구현하려면 아래 코드 쓰면 됨
+			//위 수식을 아래처럼 오늘 배운 삼항 연산자로 바꿔 봄 
 			string temp = "";
 			temp = (random == 2) ? "idle2" : "idle3";
 			_anim.SetTrigger(temp);
+			*/
 
 
 			float delay = Random.Range(3.0f, 10.0f);
