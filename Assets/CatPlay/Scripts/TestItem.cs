@@ -24,7 +24,7 @@ namespace CatPlay
 		{
 			_id.text = data.id.ToString();
 			_nameTxt.text = data.name;
-			_price.text = data.price.ToString();
+			_price.text = data.price.ToString("#,##0");
 			_icon_sprite_sp.text = data.icon_sp;
 
 		}

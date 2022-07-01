@@ -178,7 +178,15 @@ namespace CatPlay
 			}
 			else if (collision.gameObject.name.Contains("Coin"))
 			{
-				_gameMgr.AddCoin(1);
+				if(collision.gameObject.name == "Coin_1000")
+                {
+
+					_gameMgr.AddCoin(1000);
+				}
+                else
+                {
+					_gameMgr.AddCoin(1);
+				}
 				Destroy(collision.gameObject);
 			}
 

@@ -8,6 +8,8 @@ namespace CatPlay
 {
     public class GameManager : MonoBehaviour
     {
+        const string KEY_RES_COIN = "Res_CoinCount";
+        const string KEY_RES_HEART = "Res_HeartCount";
         public GameObject _worldObj;
         public GameObject _canvasObj;
         GameObject _dishObj;
@@ -44,7 +46,37 @@ namespace CatPlay
             _coinText.text = "없음";
 
             _testItemUIObj.SetActive(false);
+
+
+            // 저장된 코인 값 로드
+            if (PlayerPrefs.HasKey("KEY_RES_COIN"))
+            {
+                scoreCoin = PlayerPrefs.GetInt("KEY_RES_COIN");
+                _coinText.text = string.Format("{0:D4}", scoreCoin);
+            }
+            if (PlayerPrefs.HasKey("KEY_RES_HEART"))
+            {
+                scoreHeart = PlayerPrefs.GetInt("KEY_RES_HEART");
+                _heartText.text = string.Format("{0:D4}", scoreHeart);
+            }
         }
+        public void AddCoin(int count)
+        {
+            scoreCoin += count;
+
+            PlayerPrefs.SetInt("KEY_RES_COIN", scoreCoin);
+
+            _coinText.text = string.Format("{0:D4}", scoreCoin);
+        }
+        public void AddHeart(int count)
+        {
+            scoreHeart += count;
+
+            PlayerPrefs.SetInt("KEY_RES_HEART", scoreHeart);
+
+            _heartText.text = string.Format("{0:D4}", scoreHeart);
+        }
+
 
         // Update is called once per frame
         void Update()
@@ -64,16 +96,8 @@ namespace CatPlay
         {
             _testItemUIObj.SetActive(false);
         }
-        public void AddHeart(int count)
-        {
-            scoreHeart += count;
-            _heartText.text = scoreHeart.ToString("D4");
-        }
-        public void AddCoin(int count)
-        {
-            scoreCoin += count;
-            _coinText.text = scoreCoin.ToString("D4");
-        }
+
+
         public void OnFinishEat()
         {
             _dishObj.SetActive(false);
