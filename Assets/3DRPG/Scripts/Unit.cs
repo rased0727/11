@@ -21,17 +21,20 @@ namespace RPG3D
         void Start()
         {
             _anim = GetComponent<Animator>();
+            
 
             if (this is Knight)
             {
                 _attackCol = transform.Find("arm_R_weapon/Knight_handsword").GetComponent<BoxCollider>();
-
-                if (_attackCol != null)
-                {
-                    // 시작할때 공격충돌체 꺼주기
-                    _attackCol.enabled = false;
-                }
-
+            }
+            else if (this is Slime)
+            {
+                _attackCol = transform.Find("Body/attack").GetComponent<BoxCollider>();
+            }
+            if (_attackCol != null)
+            {
+                // 시작할때 공격충돌체 꺼주기
+                _attackCol.enabled = false;
             }
 
             // 체력 초기화
