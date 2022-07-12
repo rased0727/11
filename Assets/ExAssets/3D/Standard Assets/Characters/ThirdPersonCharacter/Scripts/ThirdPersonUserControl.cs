@@ -42,15 +42,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (!m_Jump)
-            {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-            if (CrossPlatformInputManager.GetButtonDown("Fire1")) // Fire1: 조이스틱 파이어 버튼. 마우스 왼쪽 버튼
-            {
-                // 공격키 입력을 받았을 경우 공격이라는 것을 캐릭터 스크립트의 함수로 알려준다.
-                m_Character.Attack();
-            }
         }
 
 

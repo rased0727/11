@@ -189,7 +189,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		{
 			// we implement this function to override the default root motion.
 			// this allows us to modify the positional speed before it's applied.
-			if (m_IsGrounded && Time.deltaTime > 0)
+			if (/*m_IsGrounded && */Time.deltaTime > 0)
 			{
 				//Vector3 v = (m_Animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
 				Vector3 v = (m_UserControl.Move * m_MoveSpeedMultiplier) / Time.fixedDeltaTime;
