@@ -27,6 +27,10 @@ namespace RPG3D
             {
                 _attackCol = transform.Find("arm_R_weapon/Knight_handsword").GetComponent<BoxCollider>();
             }
+            else if (this is Lancer)
+            {
+                _attackCol = transform.Find("arm_R_weapon/lancer_weapon").GetComponent<BoxCollider>();
+            }
             else if (this is Slime)
             {
                 _attackCol = transform.Find("Body/attack").GetComponent<BoxCollider>();

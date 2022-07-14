@@ -11182,21 +11182,21 @@ AnimationClip:
   - time: 0.13333334
     functionName: SetAttackCol
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 2a9ddf8a65cea0a4aa649c578d70fb59, type: 3}
+    objectReferenceParameter: {fileID: 11500000, guid: 7b3ffa23aefbe5046b831e73b3321e2a, type: 3}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
   - time: 0.13333334
     functionName: AnimSound
     data: attack
-    objectReferenceParameter: {fileID: 11500000, guid: 2a9ddf8a65cea0a4aa649c578d70fb59, type: 3}
+    objectReferenceParameter: {fileID: 11500000, guid: 7b3ffa23aefbe5046b831e73b3321e2a, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6
     functionName: SetAttackCol
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 2a9ddf8a65cea0a4aa649c578d70fb59, type: 3}
+    objectReferenceParameter: {fileID: 11500000, guid: 7b3ffa23aefbe5046b831e73b3321e2a, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

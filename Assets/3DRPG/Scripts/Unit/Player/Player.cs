@@ -11,6 +11,7 @@ namespace RPG3D
         {
             if (CrossPlatformInputManager.GetButtonDown("Fire1"))
             {
+                Debug.Log("in");
                 // 공격!!             
                 Attack();
             }
