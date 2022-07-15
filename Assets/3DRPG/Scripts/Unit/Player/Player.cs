@@ -10,10 +10,12 @@ namespace RPG3D
         void Update()
         {
             if (CrossPlatformInputManager.GetButtonDown("Fire1"))
-            {
-                Debug.Log("in");
-                // 공격!!             
+            {     
                 Attack();
+            }
+            if (CrossPlatformInputManager.GetButtonDown("Jump"))
+            {
+                Jump();
             }
         }
     }

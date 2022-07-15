@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum Team // ¿­°ÅÇü »ó¼ö·Î Áø¿µÀ» Á¤ÀÇÇØµÎ°í ¾Æ·¡¿¡¼­ ºÎ¸ð°´Ã¼ÀÇ ÀÌ¸§À» ÆÄ¾Ç ÈÄ Áø¿µ ³ª´²ÁÖ±â
+public enum Team // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ°ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½Ã¼ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ä¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 {
     NONE,
 
@@ -27,17 +27,17 @@ public class MapObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        //Ã¼·Â ÃÊ±âÈ­
+        //Ã¼ï¿½ï¿½ ï¿½Ê±ï¿½È­
         _hp = _maxHp;
         RefreshHpBar();
         UpdateHpBarPos();
 
-        //ÆÀ ÃÊ±âÈ­
+        //ï¿½ï¿½ ï¿½Ê±ï¿½È­
         _gameDir = transform.parent.parent.GetComponent<GameDirector>();
 
         if(transform.parent != null)
         {
-            if (transform.parent.gameObject.name == "Red") // ¸ðµç À¯´ÖÀÌ³ª °Ç¹°µéÀº Áø¿µ ÀÌ¸§À» °®°í ÀÖ´Â ºÎ¸ð°´Ã¼¸¦ °®°í ÀÖ´Âµ¥, ±×°ÍÀ¸·Î Áø¿µÀ» ¼Ò½ºÄÚµå¿¡¼­ ¹èÄ¡ÇØÁØ´Ù.
+            if (transform.parent.gameObject.name == "Red") // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Î¸ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Âµï¿½, ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½Úµå¿¡ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½Ø´ï¿½.
             {
                 _team = Team.RED;
             }
@@ -49,28 +49,28 @@ public class MapObject : MonoBehaviour
         
     }
     
-    // Ã¼·Â¹Ù ÃÊ±âÈ­ ¹× ¿¬µ¿
+    // Ã¼ï¿½Â¹ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected void RefreshHpBar()
     {
-        // Ã¼·Â¹Ù ÃÊ±âÈ­ ¹× ¿¬µ¿
+        // Ã¼ï¿½Â¹ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (_hpBarTrans != null)
         {
-            // fill ÀÌ¹ÌÁö ÄÄÆ÷³ÍÆ® Ã£±â
+            // fill ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
             Image fillImg = _hpBarTrans.Find("fill").GetComponent<Image>();
-            // ÃÖ´ë Ã¼·Â ´ëºñ ÇöÀç Ã¼·Â ºñÀ²À» fillAmount ¿¡ ³Ö¾îÁÜ
-            fillImg.fillAmount = (float)_hp / (float)_maxHp; // fillAmount´Â float ÀÌ±â ¶§¹®¿¡ _hp¿Í _maxHpÀÇ °æ¿ì int ¿©¼­ Çüº¯È¯ ÇØÁÜ.
+            // ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fillAmount ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
+            fillImg.fillAmount = (float)_hp / (float)_maxHp; // fillAmountï¿½ï¿½ float ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ _hpï¿½ï¿½ _maxHpï¿½ï¿½ ï¿½ï¿½ï¿½ int ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½.
         }
     }
 
     public virtual void DoDamage(int damage)
     {
         _hp -= damage;
-        _hp = Math.Max(_hp, 0); // _hp¿Í 0 À» ºñ±³ÇØ¼­ Å« °ªÀ» ³Ö¾îÁØ´Ù. Áï ÃÖ¼Ò°ªÀ» 0À¸·Î Á¦ÇÑÇÏ´Â ÄÚµå
+        _hp = Math.Max(_hp, 0); // _hpï¿½ï¿½ 0 ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½. ï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½
 
-        // Ã¼·Â ¿¬µ¿ ÇÔ¼ö È£Ãâ
+        // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
         RefreshHpBar();
 
-        // ÇÇ°Ý ÀÌÆåÆ® Àç»ý ÇÔ¼ö È£Ãâ
+        // ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
         if (_hitEffectTemplate != null)
         {
             PlayHitEffect();
@@ -78,7 +78,7 @@ public class MapObject : MonoBehaviour
 
     }
 
-    // ÇÇ°Ý ÀÌÆåÆ® Àç»ý
+    // ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
     void PlayHitEffect()
     {
         GameObject hitEffObj = Instantiate(_hitEffectTemplate);
@@ -86,18 +86,18 @@ public class MapObject : MonoBehaviour
         hitEffObj.transform.position = transform.position;
     }
 
-    protected void UpdateHpBarPos() // Ã¼·Â¹Ù°¡ Ç×»ó À¯´ÖÀ» µû¶ó ´Ù´Ïµµ·Ï ÇØÁÖ´Â ¸Þ¼­µå
+    protected void UpdateHpBarPos() // Ã¼ï¿½Â¹Ù°ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     {
-        // ÀÌ À¯´ÖÀÇ À§Ä¡¸¦ °¡Á®¿Í¼­ (¿ùµå ÁÂÇ¥)
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥)
         Vector3 unitPos = transform.position;
 
-        // À§¿¡¼­ °¡Á®¿Â ¿ùµåÁÂÇ¥¸¦ UIÁÂÇ¥(½ºÅ©¸° ÁÂÇ¥)·Î º¯È¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ UIï¿½ï¿½Ç¥(ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ç¥)ï¿½ï¿½ ï¿½ï¿½È¯
         Vector3 screenPos = Camera.main.WorldToScreenPoint(unitPos + _hpBarOffset);
 
-        // È¤½Ã _hpBarTrans °´Ã¼¿¡ ¾ÆÁ÷ ¾Æ¹«°Íµµ µé¾î ÀÖÁö ¾Ê´Ù¸é ³ÎÃ¼Å©
+        // È¤ï¿½ï¿½ _hpBarTrans ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½Ã¼Å©
         if (_hpBarTrans != null)
         {
-            // Ã¼·Â¹ÙÀÇ UIÁÂÇ¥¸¦ À§¿¡¼­ º¯È¯ÇÑ Ä³¸¯ÅÍÀÇ UIÁÂÇ¥·Î ¹Ù²ãÁÜ
+            // Ã¼ï¿½Â¹ï¿½ï¿½ï¿½ UIï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½
             _hpBarTrans.position = screenPos;
         }
     }
@@ -132,15 +132,15 @@ public class MapObject : MonoBehaviour
             
             Arrow arrow = collison.gameObject.GetComponent<Arrow>();
             
-            if (arrow != null) // È­»ìÀÎ °æ¿ì
+            if (arrow != null) // È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             {
-                if (arrow._team == _team) // °°Àº ÆÀÀÏ °æ¿ì Åë°ú
+                if (arrow._team == _team) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 {
                     return;
                 }
-                Destroy(arrow.gameObject); // ´Ù¸¥ ÆÀÀÏ °æ¿ì È­»ìÀ» Ãæµ¹ ½ÃÅ²ÈÄ ¾ø¾ÖÁÖ±â
+                Destroy(arrow.gameObject); // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½Å²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
             }
-            else // È­»ìÀÌ ¾Æ´Ñ °æ¿ì
+            else // È­ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½
             {
                 MapObject attacker = collison.transform.parent.GetComponent<MapObject>();
                 if (attacker != null)
