@@ -7,6 +7,8 @@ namespace RPG3D
 {
     public class Player : Unit
     {
+        bool _isJump = false;
+
         void Update()
         {
             if (CrossPlatformInputManager.GetButtonDown("Fire1"))
@@ -15,8 +17,17 @@ namespace RPG3D
             }
             if (CrossPlatformInputManager.GetButtonDown("Jump"))
             {
-                Jump();
+                if (_isJump == false)
+                {
+                    Jump();
+                    _isJump = true;
+                    Invoke("JumpActive", 1.0f);
+                }
             }
+        }
+        void JumpActive()
+        {
+            _isJump = false;
         }
     }
 }

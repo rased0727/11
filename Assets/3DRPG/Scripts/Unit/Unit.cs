@@ -44,7 +44,6 @@ namespace RPG3D
             }
             if (_attackCol != null)
             {
-                Debug.Log("in");
                 // 시작할때 공격충돌체 꺼주기
                 _attackCol.enabled = false;
             }

@@ -11,6 +11,7 @@ namespace RPG3D
         GameObject _ui_quest;
         GameObject _ui_cahracter;
         GameObject _ui_setting;
+        GameObject _ui_chrBar;
         public GameObject _hpBarTrans;
 
         public GameObject _world;
@@ -27,8 +28,11 @@ namespace RPG3D
             _ui_cahracter.SetActive(false);
             _ui_setting = transform.Find("UI_Setting").gameObject;
             _ui_setting.SetActive(false);
+            _ui_chrBar = transform.Find("CharacterBar").gameObject;
+            _ui_chrBar.SetActive(true);
 
             _hpBarTrans = transform.Find("CharacterBar/HpBar").gameObject;
+
 
             _player = _world.transform.Find("Units/Lancer").gameObject.GetComponent<Lancer>();
 
@@ -45,25 +49,51 @@ namespace RPG3D
             {
                 // 열려있으면 닫고
                 if (_ui_quest.activeSelf == true)
+                {
                     _ui_quest.SetActive(false);
+                    _ui_chrBar.SetActive(true);
+                }
+                    
                 // 닫혀있으면 연다.
                 else if (_ui_quest.activeSelf == false)
+                {
                     _ui_quest.SetActive(true);
+                    _ui_cahracter.SetActive(false);
+                    _ui_chrBar.SetActive(false);
+                }
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
                 // 열려있으면 닫고
                 if (_ui_cahracter.activeSelf == true)
+                {
                     _ui_cahracter.SetActive(false);
+                    _ui_chrBar.SetActive(true);
+                }
+                    
                 // 닫혀있으면 연다.
                 else if (_ui_cahracter.activeSelf == false)
+                {
                     _ui_cahracter.SetActive(true);
+                    _ui_quest.SetActive(false);
+                    _ui_chrBar.SetActive(false);
+                }
+                    
             }
             //RefreshHpBar();
         }
         public void OnSettingBtn()
         {
-            _ui_setting.SetActive(true);
+            if (_ui_setting.activeSelf == false)
+            {
+                _ui_setting.SetActive(true);
+            }
+            else
+            {
+                _ui_setting.SetActive(false);
+            }
+                
+            
         }
         public void OnSettingExtBtn()
         {
