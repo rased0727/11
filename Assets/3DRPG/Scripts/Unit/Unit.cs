@@ -24,7 +24,7 @@ namespace RPG3D
 
 
         // Start is called before the first frame update
-        void Start()
+        public virtual void Init()
         {
             _anim = GetComponent<Animator>();
             _rigid = gameObject.GetComponent<Rigidbody>();
