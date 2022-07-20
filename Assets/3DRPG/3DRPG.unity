@@ -5541,8 +5541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBarTrans: {fileID: 0}
-  _world: {fileID: 830947888}
-  _player: {fileID: 0}
   _maxHp: 0
   _hp: 0
   _strLable: {fileID: 0}
@@ -29397,7 +29395,10 @@ MonoBehaviour:
   _sound_attack: {fileID: 1739601771}
   _rigid: {fileID: 0}
   _canvas: {fileID: 119221171}
+  _world: {fileID: 830947888}
   _uiMgr: {fileID: 0}
+  _hpBarTrans: {fileID: 0}
+  _player: {fileID: 0}
   _stat:
     _strength: 0
     _magic: 0
@@ -86568,7 +86569,10 @@ MonoBehaviour:
   _sound_attack: {fileID: 0}
   _rigid: {fileID: 0}
   _canvas: {fileID: 119221171}
+  _world: {fileID: 830947888}
   _uiMgr: {fileID: 0}
+  _hpBarTrans: {fileID: 0}
+  _player: {fileID: 0}
   _attackRange: 1.5
   _enemyObj: {fileID: 552862964}
 --- !u!137 &137702288980457356
@@ -87251,7 +87255,10 @@ MonoBehaviour:
   _sound_attack: {fileID: 1739601771}
   _rigid: {fileID: 0}
   _canvas: {fileID: 119221171}
+  _world: {fileID: 0}
   _uiMgr: {fileID: 0}
+  _hpBarTrans: {fileID: 0}
+  _player: {fileID: 0}
   _stat:
     _strength: 0
     _magic: 0

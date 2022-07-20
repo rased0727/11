@@ -13,7 +13,6 @@ namespace RPG3D
         GameObject _ui_cahracter;
         GameObject _ui_setting;
         GameObject _ui_chrBar;
-        public GameObject _hpBarTrans;
 
         public GameObject _world;
         public Lancer _player;
@@ -39,16 +38,13 @@ namespace RPG3D
             _ui_chrBar = transform.Find("CharacterBar").gameObject;
             _ui_chrBar.SetActive(true);
 
-            _hpBarTrans = transform.Find("CharacterBar/HpBar").gameObject;
-            _player = _world.transform.Find("Units/Lancer").gameObject.GetComponent<Lancer>();
-
             _strLable = transform.Find("UI_Character/Labels/StrLable/Str").gameObject.GetComponent<TMP_Text>();
             _intLable = transform.Find("UI_Character/Labels/IntLable/Int").gameObject.GetComponent<TMP_Text>();
             _aglLable = transform.Find("UI_Character/Labels/AgilLable/Agil").gameObject.GetComponent<TMP_Text>();
             _atkLable = transform.Find("UI_Character/Labels/AttackLable/Attack").gameObject.GetComponent<TMP_Text>();
             _defLable = transform.Find("UI_Character/Labels/DefenceLable/Defence").gameObject.GetComponent<TMP_Text>();
 
-            RefreshHpBar();
+            
 
         }
 
@@ -109,23 +105,7 @@ namespace RPG3D
         {
             _ui_setting.SetActive(false);
         }
-        public void RefreshHpBar()
-        {
-            if (_hpBarTrans != null)
-            {
-                /*
-                Player player = new Player();
-                int hp = player._hp;
-                int maxHp = player._maxHp;
-                Image fillImg = _hpBarTrans.GetComponent<Image>();
-                fillImg.fillAmount = (float)hp / (float)maxHp;
-                */
-                _maxHp = _player._maxHp;
-                _hp = _player._hp;
-                Image fillImg = _hpBarTrans.GetComponent<Image>();
-                fillImg.fillAmount = (float)_hp / (float)_maxHp;
-            }
-        }
+        
         public void OnStatPoint(GameObject buttonOnj)
         {
             Debug.Log("-------- Stat Points Button ---------");

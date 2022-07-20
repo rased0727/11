@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG3D
 {
@@ -20,7 +21,11 @@ namespace RPG3D
         public Rigidbody _rigid;
         
         public GameObject _canvas;
+        public GameObject _world;
+
         public UIManager _uiMgr;
+        public GameObject _hpBarTrans;
+        public Lancer _player;
 
 
         // Start is called before the first frame update
@@ -29,6 +34,10 @@ namespace RPG3D
             _anim = GetComponent<Animator>();
             _rigid = gameObject.GetComponent<Rigidbody>();
             _uiMgr = _canvas.GetComponent<UIManager>();
+            _player = _world.transform.Find("Units/Lancer").gameObject.GetComponent<Lancer>();
+            _hpBarTrans = _canvas.transform.Find("CharacterBar/HpBar").gameObject;
+            _player.RefreshHpBar();
+
 
             if (this is Knight)
             {
@@ -50,6 +59,8 @@ namespace RPG3D
 
             // 체력 초기화
             _hp = _maxHp;
+            
+
 
         }
         private void OnTriggerEnter(Collider other)
@@ -77,7 +88,7 @@ namespace RPG3D
                 {
                     Destroy(gameObject);
                 }
-                _uiMgr.RefreshHpBar();
+                RefreshHpBar();
             }
         }
 
@@ -127,6 +138,23 @@ namespace RPG3D
             if (name == "attack")
             {
                 _sound_attack.Play();
+            }
+        }
+        public void RefreshHpBar()
+        {
+            if (_hpBarTrans != null)
+            {
+                /*
+                Player player = new Player();
+                int hp = player._hp;
+                int maxHp = player._maxHp;
+                Image fillImg = _hpBarTrans.GetComponent<Image>();
+                fillImg.fillAmount = (float)hp / (float)maxHp;
+                */
+                _maxHp = _player._maxHp;
+                _hp = _player._hp;
+                Image fillImg = _hpBarTrans.GetComponent<Image>();
+                fillImg.fillAmount = (float)_hp / (float)_maxHp;
             }
         }
 
