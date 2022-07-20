@@ -36,6 +36,7 @@ namespace RPG3D
             _uiMgr = _canvas.GetComponent<UIManager>();
             _player = _world.transform.Find("Units/Lancer").gameObject.GetComponent<Lancer>();
             _hpBarTrans = _canvas.transform.Find("CharacterBar/HpBar").gameObject;
+
             _player.RefreshHpBar();
 
 
@@ -79,17 +80,23 @@ namespace RPG3D
                 Debug.Log("attacker : " + other.gameObject.name);
                 Debug.Log("========================");
                 */
-                _hp -= 10;
 
-                if (_anim != null)
-                    _anim.SetTrigger("hit");
-
-                if (_hp <= 0)
-                {
-                    Destroy(gameObject);
-                }
-                RefreshHpBar();
+                ProcessHit(10);
+                
             }
+        }
+        protected virtual void ProcessHit(int damage)
+        {
+            if (_anim != null)
+                _anim.SetTrigger("hit");
+
+            if (_hp <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+            RefreshHpBar();
+            _hp -= 10;
         }
 
         protected void Attack()

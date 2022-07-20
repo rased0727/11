@@ -15,15 +15,12 @@ namespace RPG3D
         // Start is called before the first frame update
         void Start()
         {
-
             _uiMgr = _canvas.GetComponent<UIManager>();
             _uiMgr.Init();
             _lancer = _world.transform.Find("Units/Lancer").gameObject.GetComponent<Lancer>();
             _lancer.Init();
             _slime = _world.transform.Find("Units/Slime").gameObject.GetComponent<Slime>();
             _slime.Init();
-            
-
         }
     }
 }
