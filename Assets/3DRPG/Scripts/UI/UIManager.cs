@@ -19,6 +19,9 @@ namespace RPG3D
         public int _maxHp;
         public int _hp;
 
+        Image _expBar;
+        public TMP_Text _txtLevel;
+        public TMP_Text _txtExp;
         public TMP_Text _strLable;
         public TMP_Text _intLable;
         public TMP_Text _aglLable;
@@ -101,6 +104,10 @@ namespace RPG3D
         }
         public void InitStat()
         {
+            _txtLevel = transform.Find("UI_Character/Labels/LevelLable/txtLevel").gameObject.GetComponent<TMP_Text>();
+            _txtExp = transform.Find("UI_Character/expBar/txtExp").gameObject.GetComponent<TMP_Text>();
+            _expBar = transform.Find("UI_Character/expBar").gameObject.GetComponent<Image>();
+
             _strLable = transform.Find("UI_Character/Labels/StrLable/Str").gameObject.GetComponent<TMP_Text>();
             _intLable = transform.Find("UI_Character/Labels/IntLable/Int").gameObject.GetComponent<TMP_Text>();
             _aglLable = transform.Find("UI_Character/Labels/AgilLable/Agil").gameObject.GetComponent<TMP_Text>();
@@ -166,6 +173,10 @@ namespace RPG3D
         }
         public void RefreshStat()
         {
+            _txtLevel.text = _player._level.ToString();
+            _txtExp.text = string.Format("{0} / {1}", _player._exp, _player._requiredExp);
+            _expBar.fillAmount = (float)_player._exp / (float)_player._requiredExp;
+
             _strLable.text = _player._stat._strength.ToString();
             _intLable.text = _player._stat._magic.ToString();
             _aglLable.text = _player._stat._agility.ToString();

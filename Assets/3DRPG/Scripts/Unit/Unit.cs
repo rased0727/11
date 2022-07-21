@@ -75,28 +75,56 @@ namespace RPG3D
 
             if (other.gameObject.tag == "AttackCol")
             {
-                /*
+                
                 Debug.Log("==== 데미지 발생!! =====");
-                Debug.Log("attacker : " + other.gameObject.name);
+                Debug.Log("attacker weapon : " + other.gameObject.name);
+                Debug.Log("attacker : " + other.transform.parent.parent.gameObject.name);
                 Debug.Log("========================");
-                */
 
-                ProcessHit(10);
+                Unit attacker = other.transform.parent.parent.GetComponent<Unit>();
+                
+                Debug.Assert(attacker != null);
+                Debug.Log("attacker type : " + attacker.GetType());
+                if (attacker is Player) // if(attacker.GetType() == typeof(Player)) 와 동일
+                {
+                    // 플레이어가 공격한 경우
+                    Player playerAttacker = attacker as Player;
+                }
+                else
+                {
+                    // 플레이어가 공격한 경우
+                }
+
+w                ProcessHit(10, attacker);
                 
             }
         }
-        protected virtual void ProcessHit(int damage)
+        protected virtual void ProcessHit(int damagem, Unit attacker)
         {
             if (_anim != null)
                 _anim.SetTrigger("hit");
 
             if (_hp <= 0)
             {
-                Destroy(gameObject);
+                Die(attacker);
             }
 
             RefreshHpBar();
             _hp -= 10;
+        }
+        void Die(Unit attacker)
+        {
+            if (attacker is Player) // if(attacker.GetType() == typeof(Player)) 와 동일
+            {
+                // 플레이어가 공격한 경우 경험치를 준다.
+                Player player = attacker as Player;
+                player.AddExp(1000);
+            }
+            else
+            {
+                // 플레이어가 아닌 경우이므로 경험치를 줄 필요 없음.
+            }
+            Destroy(gameObject);
         }
 
         protected void Attack()

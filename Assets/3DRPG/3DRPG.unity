@@ -5544,6 +5544,8 @@ MonoBehaviour:
   _player: {fileID: 0}
   _maxHp: 0
   _hp: 0
+  _txtLevel: {fileID: 0}
+  _txtExp: {fileID: 0}
   _strLable: {fileID: 0}
   _intLable: {fileID: 0}
   _aglLable: {fileID: 0}
@@ -29430,11 +29432,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxLevel: 0
-  _level: 0
-  _reqExp: 0
-  _maxExp: 0
-  _exp: 0
+  _maxLevel: 100
+  _level: 1
+  _maxExp: 100000000
+  _exp: 68
+  _requiredExp: 211
 --- !u!114 &736351634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33618,7 +33620,7 @@ GameObject:
   - component: {fileID: 843139978}
   - component: {fileID: 843139977}
   m_Layer: 5
-  m_Name: Level
+  m_Name: txtLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62731,7 +62733,7 @@ GameObject:
   - component: {fileID: 1556950025}
   - component: {fileID: 1556950024}
   m_Layer: 5
-  m_Name: BarExp
+  m_Name: expBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62778,7 +62780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd1e5898261008544abb9ba4284fba3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bd58255b0b2b8e4084d47b957372eff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -67380,7 +67382,7 @@ GameObject:
   - component: {fileID: 1692946034}
   - component: {fileID: 1692946033}
   m_Layer: 5
-  m_Name: Exp
+  m_Name: txtExp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87303,6 +87305,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   _maxLevel: 0
   _level: 0
-  _reqExp: 0
   _maxExp: 0
   _exp: 0
+  _requiredExp: 0

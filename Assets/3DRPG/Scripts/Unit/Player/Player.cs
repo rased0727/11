@@ -41,12 +41,14 @@ namespace RPG3D
         }
         void Update()
         {
+            /*
             int nextLevel = _level + 1;
 
             float expRatio = _expCurve.Evaluate((float)nextLevel / (float)_maxLevel);
 
             // 다음 레벨로 가기 위한 경험치
             _requiredExp = (long)(_maxExp * expRatio);
+            */
 
 
             if (CrossPlatformInputManager.GetButtonDown("Fire1"))
@@ -68,7 +70,6 @@ namespace RPG3D
             if (PlayerPrefs.HasKey("STAT_STRENGTH")) // 이미 스탯 랜덤을 결정한 적이 있음
             {
                 _stat._strength = PlayerPrefs.GetInt("STAT_STRENGTH");
-                Debug.Log(_stat._strength);
                 _stat._magic = PlayerPrefs.GetInt("STAT_MAGIC");
                 _stat._agility = PlayerPrefs.GetInt("STAT_AGILITY");
                 _stat._attack = PlayerPrefs.GetInt("STAT_ATTACK");
@@ -98,11 +99,16 @@ namespace RPG3D
         {
             _isJump = false;
         }
-        protected override void ProcessHit(int damage)
+        protected override void ProcessHit(int damagem, Unit attacker)
         {
-            base.ProcessHit(10);
+            base.ProcessHit(10, attacker);
 
             RefreshHpBar(); // 나는 Execution Order가 잘 안먹혀서 어쩔 수 없이 Unit에 존재함(원래는 UIManager에 있는게 좋음)
+        }
+        public void AddExp(int exp)
+        {
+            _exp += exp;
+            _uiMgr.RefreshStat();
         }
     }
 }
