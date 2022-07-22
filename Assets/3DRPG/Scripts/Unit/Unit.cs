@@ -95,11 +95,11 @@ namespace RPG3D
                     // 플레이어가 공격한 경우
                 }
 
-w                ProcessHit(10, attacker);
+                ProcessHit(10, attacker);
                 
             }
         }
-        protected virtual void ProcessHit(int damagem, Unit attacker)
+        protected virtual void ProcessHit(int damage, Unit attacker)
         {
             if (_anim != null)
                 _anim.SetTrigger("hit");
@@ -109,8 +109,11 @@ w                ProcessHit(10, attacker);
                 Die(attacker);
             }
 
+
             RefreshHpBar();
-            _hp -= 10;
+            _hp -= damage;
+            Debug.Log("들어옴");
+            
         }
         void Die(Unit attacker)
         {

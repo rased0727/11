@@ -99,9 +99,9 @@ namespace RPG3D
         {
             _isJump = false;
         }
-        protected override void ProcessHit(int damagem, Unit attacker)
+        protected override void ProcessHit(int damage, Unit attacker)
         {
-            base.ProcessHit(10, attacker);
+            base.ProcessHit(damage, attacker);
 
             RefreshHpBar(); // 나는 Execution Order가 잘 안먹혀서 어쩔 수 없이 Unit에 존재함(원래는 UIManager에 있는게 좋음)
         }
