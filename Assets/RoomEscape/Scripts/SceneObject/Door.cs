@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace RoomEscape
 {
-	public class Door : SceneObject
-	{
-	}
+public class Door : SceneObject
+{
+
+}
 }
