@@ -58,11 +58,27 @@ namespace RoomEscape
                 //연출 카메라 활성화
                 _showCamera.gameObject.SetActive(true);
 
-                // 뷰가 바뀌었음을 알린다
+                // 뷰가 바뀌었음을 알린다(연출뷰로 간다)
                 UIManager.I.OnChangeView(false);
 
             }
 
+        }
+
+        public void OnClick_BackBtn()
+        {
+            // 연출카메라가 켜있던 씬오브젝트는 원상복귀 시킨다
+            if(_showCamera != null)
+            {
+                if( _showCamera.gameObject.activeSelf == true )
+                {
+                    //연출 카메라 비활성화
+                    _showCamera.gameObject.SetActive(false);
+
+                    // 뷰가 바뀌었음을 알린다(메인뷰로 돌아간다)
+                    UIManager.I.OnChangeView(true);
+                }
+            }
         }
     }
 }

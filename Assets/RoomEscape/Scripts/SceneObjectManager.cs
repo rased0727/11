@@ -20,5 +20,22 @@ namespace RoomEscape
         {
         
         }
+
+        public void OnClick_BackBtn()
+        {
+            /*foreach(SceneObject obj in _sceneObjectList)
+            {
+                obj.OnClick_BackBtn();
+            }*/
+
+
+            for(int i=0; i< _sceneObjectList.Length; i++)
+            {
+                SceneObject obj = _sceneObjectList[i];
+                obj.OnClick_BackBtn();
+            }
+
+
+        }
     }
 }
