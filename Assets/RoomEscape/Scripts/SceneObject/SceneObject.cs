@@ -13,7 +13,8 @@ namespace RoomEscape
 
 
     public class SceneObject : MonoBehaviour
-{
+    {
+        public Camera _showCamera;
         public RectTransform _infoTextTrans;
         public string _infoText = "";
 
@@ -47,6 +48,21 @@ namespace RoomEscape
             Debug.Log("OnMouseExit: " + gameObject.name);
 
             _infoTextTrans.gameObject.SetActive(false);
+        }
+
+        void OnMouseDown()
+        {
+            // 마우스 클릭시, 만일 연출카메라가 있다면, 해당 카메라 켜주기
+            if(_showCamera != null)
+            {
+                //연출 카메라 활성화
+                _showCamera.gameObject.SetActive(true);
+
+                // 뷰가 바뀌었음을 알린다
+                UIManager.I.OnChangeView(false);
+
+            }
+
         }
     }
 }
