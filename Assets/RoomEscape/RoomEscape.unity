@@ -175,7 +175,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.2
     width: 1
     height: 1
   near clip plane: 0.3
@@ -427,7 +427,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.2
     width: 1
     height: 1
   near clip plane: 0.3
@@ -1408,7 +1408,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 479559705}
   m_HandleRect: {fileID: 479559704}
   m_Direction: 2
-  m_Value: 1.0000002
+  m_Value: 1
   m_Size: 0.51707184
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1486,7 +1486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 369}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1024646111
@@ -1526,7 +1526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 374.7409, y: 64.695}
+  m_AnchoredPosition: {x: 371, y: 64.695}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024646113
@@ -1691,7 +1691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.7397, y: -125}
+  m_AnchoredPosition: {x: 19.7397, y: -59.6}
   m_SizeDelta: {x: 199.4795, y: 33.0369}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1120052600
@@ -1715,7 +1715,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d1fc5eae8e51d564d93a6284df7c2431, type: 3}
+    m_Font: {fileID: 12800000, guid: f7dff249b0b41424c819c2281dcb8d9b, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -2028,14 +2028,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302873618}
-  m_LocalRotation: {x: -0.00030721052, y: 0.9777191, z: -0.20991719, w: -0.00006595838}
-  m_LocalPosition: {x: 4.98, y: 2.26, z: 2.47}
+  m_LocalRotation: {x: -0.00029965126, y: 0.9536609, z: -0.30088317, w: -0.00009454091}
+  m_LocalPosition: {x: 4.98, y: 1.86, z: 2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 125423299}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 24.235, y: 180, z: -0.036}
+  m_LocalEulerAnglesHint: {x: 35.021, y: 180, z: -0.036}
 --- !u!20 &1302873620
 Camera:
   m_ObjectHideFlags: 0
@@ -2056,7 +2056,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.2
     width: 1
     height: 1
   near clip plane: 0.3
@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1944083691}
   m_HandleRect: {fileID: 1944083690}
   m_Direction: 0
-  m_Value: 0
+  m_Value: -0.00000012985431
   m_Size: 0.7588615
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2671,7 +2671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: -183.2}
+  m_AnchoredPosition: {x: 20, y: -103.9}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659600470
