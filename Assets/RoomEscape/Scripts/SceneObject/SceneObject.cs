@@ -36,6 +36,8 @@ namespace RoomEscape
 
         void OnMouseEnter()
         {
+            Debug.Log("OnMouseEnter: " + gameObject.name);
+
             _infoTextTrans.gameObject.SetActive(true);
             Text text = _infoTextTrans.GetComponent<Text>();
             text.text = _infoText;
@@ -43,6 +45,8 @@ namespace RoomEscape
 
         void OnMouseExit()
         {
+            Debug.Log("OnMouseExit: " + gameObject.name);
+
             _infoTextTrans.gameObject.SetActive(false);
         }
 

@@ -5,45 +5,48 @@ using UnityEngine.UI;
 
 namespace RoomEscape
 {
-
     public class SceneItem : MonoBehaviour
     {
-        public RectTransform _itemTextTrans;
-        public string _itemText = "";
+        RectTransform _infoTextTrans;
+        public string _infoText = "";
 
         // Start is called before the first frame update
         void Start()
         {
             GameObject canvas = UIManager.I.gameObject;
 
-            _itemTextTrans = canvas.transform.Find("ItemText").GetComponent<RectTransform>();
+            _infoTextTrans = canvas.transform.Find("InfoText_Item").GetComponent<RectTransform>();
 
-            _itemTextTrans.gameObject.SetActive(false);
+            _infoTextTrans.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
         void Update()
         {
-
+        
         }
 
         void OnMouseEnter()
         {
-            _itemTextTrans.gameObject.SetActive(true);
-            Text text = _itemTextTrans.GetComponent<Text>();
-            text.text = _itemText;
-        }
+            Debug.Log("OnMouseEnter: " + gameObject.name);
 
+            _infoTextTrans.gameObject.SetActive(true);
+            Text text = _infoTextTrans.GetComponent<Text>();
+            text.text = _infoText;
+        }
         void OnMouseExit()
         {
-            _itemTextTrans.gameObject.SetActive(false);
-        }
+            Debug.Log("OnMouseExit: " + gameObject.name);
 
-        void OnMouseDown()
+            _infoTextTrans.gameObject.SetActive(false);
+        }
+        private void OnMouseDown()
         {
+            // Inventory.cs 에 접근해서 데이터를 넣어주기
+            Inventory.I.AddItem(this._infoText);
 
+            gameObject.SetActive(false);
         }
-
 
     }
 }
