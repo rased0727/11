@@ -58,6 +58,9 @@ namespace RoomEscape
                 //연출 카메라 활성화
                 _showCamera.gameObject.SetActive(true);
 
+                Collider col = GetComponent<Collider>();
+                col.enabled = false;
+
                 // 뷰가 바뀌었음을 알린다(연출뷰로 간다)
                 UIManager.I.OnChangeView(false);
 
@@ -74,6 +77,9 @@ namespace RoomEscape
                 {
                     //연출 카메라 비활성화
                     _showCamera.gameObject.SetActive(false);
+
+                    Collider col = GetComponent<Collider>();
+                    col.enabled = true;
 
                     // 뷰가 바뀌었음을 알린다(메인뷰로 돌아간다)
                     UIManager.I.OnChangeView(true);

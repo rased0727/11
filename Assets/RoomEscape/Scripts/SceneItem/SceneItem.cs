@@ -40,13 +40,16 @@ namespace RoomEscape
 
             _infoTextTrans.gameObject.SetActive(false);
         }
-        private void OnMouseDown()
+
+        void OnMouseDown()
         {
-            // Inventory.cs 에 접근해서 데이터를 넣어주기
-            Inventory.I.AddItem(this._infoText);
+            // 인벤토리에 접근해서, 데이터(아이템)를 넣어주기
+
+            Inventory.I.AddItem(_infoText);
 
             gameObject.SetActive(false);
-        }
 
+            _infoTextTrans.gameObject.SetActive(false);
+        }
     }
 }
