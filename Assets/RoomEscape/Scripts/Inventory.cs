@@ -31,7 +31,9 @@ namespace RoomEscape
             {
                 _itemList.Add(itemName);
 
-                UIManager.I._ui_inven.Add();
+                // UI_Inventory에 알려서 UI에도 추가하기
+                UIManager.I._ui_iven.Add(itemName);
+
             }
             
         }

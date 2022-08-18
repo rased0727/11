@@ -12,7 +12,7 @@ namespace RoomEscape
         GameObject _leftBtnObj;
         GameObject _rightBtnObj;
 
-        public UI_Inventory _ui_inven;
+        public UI_Inventory _ui_iven;
 
         void Awake()
         {
@@ -22,7 +22,7 @@ namespace RoomEscape
         // Start is called before the first frame update
         void Start()
         {
-            _ui_inven = transform.Find("UI_Inventory").GetComponent<UI_Inventory>();
+            _ui_iven = transform.Find("UI_Inventory").GetComponent<UI_Inventory>();
 
             _backBtnObj = transform.Find("BackButton").gameObject;
 
