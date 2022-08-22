@@ -8,9 +8,6 @@ namespace RoomEscape
     {
         public string _name;
         public int _count;
-
-
-
     }
 
     public class Inventory : MonoBehaviour

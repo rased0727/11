@@ -30,7 +30,7 @@ namespace RoomEscape
 
             // Inventory 객체의 _itemList를 확인해서, 그 갯수대로
             // UI_InvenItem 를 생성해준다.
-            for(int i=0; i< Inventory.I._itemList.Count; i++)
+            for(int i=0; i< Inventory.I._itemList.Count; i++)   
             {
                 string itemName = Inventory.I._itemList[i];
 
