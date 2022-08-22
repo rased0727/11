@@ -46,7 +46,9 @@ namespace Test_RoomEscape
             cloneObj.SetActive(true);
 
             UI_InvenItem invenItem = cloneObj.GetComponent<UI_InvenItem>();
+            Debug.Log("2 " + invenItem);
             invenItem.SetInfo(itemName);
+            
 
         }
 

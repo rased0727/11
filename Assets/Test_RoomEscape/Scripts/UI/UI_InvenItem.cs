@@ -26,6 +26,7 @@ namespace Test_RoomEscape
         // 그 정보대로, 이름, 아이콘, 수량 등 표시
         public void SetInfo(string itemName)
         {
+            Debug.Log("1 " + itemName);
             _itemNameTxt = transform.Find("itemNameTxt").GetComponent<Text>();
             _itemNameTxt.text = itemName;
 
