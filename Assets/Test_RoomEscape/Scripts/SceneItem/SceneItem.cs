@@ -40,7 +40,6 @@ namespace Test_RoomEscape
 
             _infoTextTrans.gameObject.SetActive(false);
         }
-
         void OnMouseDown()
         {
             // 인벤토리에 접근해서, 데이터(아이템)를 넣어주기

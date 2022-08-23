@@ -53,7 +53,7 @@ namespace Test_RoomEscape
         protected virtual void OnMouseDown()
         {
             // 마우스 클릭시, 만일 연출카메라가 있다면, 해당 카메라 켜주기
-            if(_showCamera != null)
+            if (_showCamera != null && UIManager.I.IsUITouched() == false)
             {
                 //연출 카메라 활성화
                 _showCamera.gameObject.SetActive(true);

@@ -25,6 +25,8 @@ namespace Test_RoomEscape
 
         protected override void OnMouseDown()
         {
+            if (UIManager.I.IsUITouched() == true)
+                return;
             base.OnMouseDown();
 
             // 문을 열고 닫고
@@ -50,7 +52,7 @@ namespace Test_RoomEscape
             float y = _doorPanelTrans.localPosition.y;
 
             _doorPanelTrans.localPosition = new Vector3(0.63f, y, 1.3f);
-            _doorPanelTrans.rotation = Quaternion.Euler(0, 100, 0);
+            _doorPanelTrans.localRotation = Quaternion.Euler(0, 80, 0);
 
         }
 
@@ -62,8 +64,8 @@ namespace Test_RoomEscape
 
             float y = _doorPanelTrans.localPosition.y;
 
-            _doorPanelTrans.localPosition = new Vector3(0.1f, y, 0.07f);
-            _doorPanelTrans.rotation = Quaternion.Euler(0, 45, 0);
+            _doorPanelTrans.localPosition = new Vector3(0.1f, y, -0.011f);
+            _doorPanelTrans.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
     }
