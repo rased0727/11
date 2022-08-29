@@ -53,7 +53,17 @@ namespace TinyTower
                 //실패
                 cb(false);
             }
-            
+        }
+        public void AddGold(int gold, callback cb = null)
+        {
+        
+            _gold += gold;
+            PlayerPrefs.SetInt(KEY_GOLD, _gold);
+            UI_Manager.I.Refresh_Gold_UI();
+
+            //결과를 알려주도록 콜백함수 호출
+            if(cb!=null)
+                cb(true);
 
         }
 
