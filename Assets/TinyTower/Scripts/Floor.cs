@@ -24,7 +24,7 @@ namespace TinyTower
         public FloorType _type;
         public void CollectGold()
         {
-            // 테스트코드
+            // 사람이 들어오고 몇분이 지나면 골드가 늘어나는 로직
         }
         public void ShowInfo(string name)
         {
@@ -33,10 +33,7 @@ namespace TinyTower
         void OnMouseDown()
         {
             ShowInfo(gameObject.name);
-            //Debug.Log("this : " + this);
         }
-
-
     }
 }
 
