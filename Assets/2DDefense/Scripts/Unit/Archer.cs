@@ -6,7 +6,7 @@ public class Archer : Unit
 {
     public GameObject _arrowTemplate;
     public Transform _firePosTrans;
-    protected override void Attack()
+    public override void Attack()
     {
         base.Attack();
         if(_arrowTemplate != null)

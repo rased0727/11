@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Unit : MapObject
+public class Unit : MapObject, IAttacker
 {
     public float _speed = 1.0f; // 캐릭터 이동속도
     public float _attackRange = 1.75f;
@@ -191,7 +191,7 @@ public class Unit : MapObject
         Attack();
     }
 
-    protected virtual void Attack()
+    public virtual void Attack()
     {
        
     }

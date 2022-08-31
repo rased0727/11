@@ -10,9 +10,8 @@ namespace TinyTower
         void Start()
         {
             UserData.I.Init();
+            FloorManager.I.Init();
             UI_Manager.I.Init();
-
-
         }
 
         // Update is called once per frame
