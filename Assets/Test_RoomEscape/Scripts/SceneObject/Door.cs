@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace Test_RoomEscape
 {
-    // í•œê¸€ í…ŒìŠ¤íŠ¸
     public class Door : SceneObject
     {
         Transform _doorPanelTrans;
@@ -30,14 +29,14 @@ namespace Test_RoomEscape
                 return;
             base.OnMouseDown();
 
-            // ë¬¸ì„ ì—´ê³  ë‹«ê³ 
+            // ¹®À» ¿­°í ´İ°í
 
 
-            if (_opened == false) // ë¬¸ì´ ë‹«í˜€ìˆìœ¼ë©´, ì—´ê³ 
+            if (_opened == false) // ¹®ÀÌ ´İÇôÀÖÀ¸¸é, ¿­°í
             {
                 Open();
             }
-            else if (_opened) // ë¬¸ì´ ì—´ë ¤ìˆìœ¼ë©´, ë‹«ê³ 
+            else if (_opened) // ¹®ÀÌ ¿­·ÁÀÖÀ¸¸é, ´İ°í
             {
                 Close();
             }

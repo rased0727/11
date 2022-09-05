@@ -4,38 +4,37 @@ using UnityEngine;
 
 namespace TinyTower
 {
-    // í…ŒìŠ¤íŠ¸
     public class Block : MonoBehaviour
     {
-        const float HEIGHT = 5.0f; // ë¸”ë¡ 1ê°œ ì¸µì˜ ë†’ì´
+        const float HEIGHT = 5.0f; // ºí·Ï 1°³ ÃþÀÇ ³ôÀÌ
 
 
-        void OnMouseDown() // ê³µì‚¬ì¤‘ ë¸”ëŸ­ì„ í„°ì¹˜í•˜ë©´
+        void OnMouseDown() // °ø»çÁß ºí·°À» ÅÍÄ¡ÇÏ¸é
         {
             
 
-            // UserData ì—ì„œ ê³¨ë“œì‚¬ìš© ë©”ì„œë“œ í˜¸ì¶œ
+            // UserData ¿¡¼­ °ñµå»ç¿ë ¸Þ¼­µå È£Ãâ
             UserData.I.UseGold(Common.COST_SHOP, ChangeGoldCb);
         }
         void ChangeGoldCb(bool result)
         {
             if (result == true)
             {
-                //Debug.Log("ë¸”ë¡í„°ì¹˜!! " + Input.mousePosition.ToString());
+                //Debug.Log("ºí·ÏÅÍÄ¡!! " + Input.mousePosition.ToString());
 
                 FloorManager.I.Create(transform.position);
 
-                // ì´ ë¸”ëŸ­(ê³µì‚¬ì¤‘ ë¸”ëŸ­)ì€ í•œ ì¸µ ìœ„ë¡œ ì˜¬ë ¤ì£¼ê¸°
+                // ÀÌ ºí·°(°ø»çÁß ºí·°)Àº ÇÑ Ãþ À§·Î ¿Ã·ÁÁÖ±â
                 Raise();
             }
             else
             {
-                // TODO : ëˆ ë¶€ì¡± íŒì—…ì°½ êµ¬í˜„
-                // ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤ íŒì—…ì°½ ë„ìš°ê¸°
+                // TODO : µ· ºÎÁ· ÆË¾÷Ã¢ ±¸Çö
+                // µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù ÆË¾÷Ã¢ ¶ç¿ì±â
                 PlatformDialog.SetButtonLabel("OK");
                 PlatformDialog.Show(
-                    "ì•Œë¦¼",
-                    "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.",
+                    "¾Ë¸²",
+                    "°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù.",
                     PlatformDialog.Type.SubmitOnly,
                     () => {
                         Debug.Log("OK");
