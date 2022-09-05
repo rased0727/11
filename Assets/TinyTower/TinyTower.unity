@@ -3576,6 +3576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  _income: 1
+  _time: 1
+  _stopTime: 
 --- !u!1 &783692850
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,6 +4513,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  _income: 1
+  _time: 1
+  _stopTime: 
 --- !u!1001 &1294283284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6582,6 +6588,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  _income: 2
+  _time: 1
+  _stopTime: 
 --- !u!65 &1995982560
 BoxCollider:
   m_ObjectHideFlags: 0
