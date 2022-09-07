@@ -10,6 +10,8 @@ namespace TinyTower
         // Start is called before the first frame update
         void Start()
         {
+            // 게임데이터 초기화
+            GameData.I.Init();
 
             // 유저데이터 초기화
             UserData.I.Init();

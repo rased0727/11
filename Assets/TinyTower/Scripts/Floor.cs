@@ -78,7 +78,13 @@ namespace TinyTower
 
         public void ShowInfo()
         {
-            //이 상점의 정보를 표시
+            // 이 상점의 정보를 표시
+
+            // 이름
+            // 업종
+            // 종업원
+            // 고객의 수
+            // 단위 시간 당 수익
 
         }
 
