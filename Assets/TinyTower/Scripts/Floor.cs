@@ -14,13 +14,13 @@ namespace TinyTower
 
     public enum FloorType
     {
-        RESIDENTIAL, //ÁÖ°Å
-        FOOD_STORE,  //À½½ÄÁ¡
-        SERVICE,     //¼­ºñ½º ½ºÅä¾î
-        CULTURE,     //¹®È­½Ã¼³
-        CREATIVE,    //¿¹¼ú, Ã¢ÀÛ
-        RETAIL,      //°¢Á¾ ÆÇ¸ÅÁ¡
-        BUSINESS     //»ç¹«½Ç, »ç¾÷Àå
+        RESIDENTIAL, //ì£¼ê±°
+        FOOD_STORE,  //ìŒì‹ì 
+        SERVICE,     //ì„œë¹„ìŠ¤ ìŠ¤í† ì–´
+        CULTURE,     //ë¬¸í™”ì‹œì„¤
+        CREATIVE,    //ì˜ˆìˆ , ì°½ì‘
+        RETAIL,      //ê°ì¢… íŒë§¤ì 
+        BUSINESS     //ì‚¬ë¬´ì‹¤, ì‚¬ì—…ì¥
     }
 
 
@@ -28,18 +28,18 @@ namespace TinyTower
     {
         public FloorType _type;
 
-        public int _income = 1; // ´ÜÀ§ ½Ã°£´ç ¼öÀÍ
-        public float _time = 1.0f; // ´ÜÀ§ ½Ã°£
+        public int _income = 1; // ë‹¨ìœ„ ì‹œê°„ë‹¹ ìˆ˜ìµ
+        public float _time = 1.0f; // ë‹¨ìœ„ ì‹œê°„
 
-        private float _elapsed = 0.0f; // °æ°ú ½Ã°£
+        private float _elapsed = 0.0f; // ê²½ê³¼ ì‹œê°„
 
-        [SerializeField] private string _stopTime = "";
+        [SerializeField]private string _stopTime = "";
 
         public void Init()
         {
             if (PlayerPrefs.HasKey("game_stop_time"))
             {
-                string lastGameTime = PlayerPrefs.GetString("game_stop_time");
+                /*string lastGameTime = PlayerPrefs.GetString("game_stop_time");
 
                 DateTime now = DateTime.Now;
 
@@ -49,50 +49,73 @@ namespace TinyTower
                 int incomeTotal = (int)(span.TotalSeconds / _time * _income);
 
                 bool uiRefresh = false;
-                UserData.I.AddGold(incomeTotal, null, uiRefresh);
+                UserData.I.AddGold(incomeTotal, null, uiRefresh);*/
             }
         }
 
 
         void Update()
         {
-            _elapsed += Time.deltaTime;
+           /* _elapsed += Time.deltaTime;
 
-            if (_elapsed > _time)
+            if( _elapsed > _time )
             {
-                CollectGold(); // _time ÃÊ¸¶´Ù È£ÃâÀÌ µÊ
+                CollectGold(); // _time ì´ˆë§ˆë‹¤ í˜¸ì¶œì´ ë¨
 
                 _elapsed = 0.0f;
             }
-
-        }
+           */
+        }      
 
 
         public void CollectGold()
         {
-            // Å×½ºÆ® ÄÚµå: nÃÊ ¸¶´Ù n°ñµå ¼öÀÔ Áõ°¡ ÇÏ´Â ·çÆ¾
+            // í…ŒìŠ¤íŠ¸ ì½”ë“œ: nì´ˆ ë§ˆë‹¤ nê³¨ë“œ ìˆ˜ì… ì¦ê°€ í•˜ëŠ” ë£¨í‹´
 
-            // °ñµå 1 Áõ°¡
+            // ê³¨ë“œ 1 ì¦ê°€
             UserData.I.AddGold(_income);
         }
 
-        public void ShowInfo()
+        public void ShowInfo() // stub ì½”ë“œ (ì„¤ê³„ìš© ì½”ë“œ)
         {
-            // ÀÌ »óÁ¡ÀÇ Á¤º¸¸¦ Ç¥½Ã
+           // UI_Manager.I._ui_info_floor.SetActive(true);
 
-            // ÀÌ¸§
-            // ¾÷Á¾
-            // Á¾¾÷¿ø
-            // °í°´ÀÇ ¼ö
-            // ´ÜÀ§ ½Ã°£ ´ç ¼öÀÍ
 
         }
 
-        void OnMouseDown()
+        void OnMouseUp()
         {
-            ShowInfo();
+            if (UI_Manager.I.UI_Touched()) return;
+
+            List<GameData_Product> dataList = new List<GameData_Product>();
+
+            //foreach(GameData_Product data in  GameData.I._product_dataList)
+            for(int i=0; i< GameData.I._product_dataList.Count; i++)
+            {
+                GameData_Product data = GameData.I._product_dataList[i];
+
+                if( data.floor == gameObject.name )
+                {
+                    dataList.Add(data);
+                }
+            }
+
+            UI_Manager.I._ui_info_floor.ShowInfo(dataList);
+
+            // íŒì—… ë„ìš°ê¸°
+
+
+
+            // StartCoroutine(_OnMouseUp());
         }
+
+        /*IEnumerator _OnMouseUp()
+        {
+            yield return null;
+
+            if (CameraDrag.I._dragging == false)
+                ShowInfo();
+        }*/
 
     }
 }
-

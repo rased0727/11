@@ -13,19 +13,19 @@ namespace TinyTower
         const string KEY_FLOOR_LIST = "user_data_floor_list";
 
 
-        [SerializeField] int _gold = 0;
+        [SerializeField]int _gold = 0;
         [SerializeField] string _floorList;
         public string FloorList
         {
             get { return _floorList; }
         }
 
-        public int Gold //ÇÁ·ÎÆÛÆ¼
+        public int Gold //í”„ë¡œí¼í‹°
         {
-            get { return _gold; } // ÀĞ±â
+            get { return _gold; } // ì½ê¸°
         }
 
-        public static UserData I; // I´Â ½Ì±ÛÅæ ÀÎ½ºÅÏ½º¸¦ ÀÇ¹Ì
+        public static UserData I; // IëŠ” ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì˜ë¯¸
 
         void Awake()
         {
@@ -49,7 +49,7 @@ namespace TinyTower
         #region GOLD
         void LoadGold()
         {
-            // ¾ÛÀ» Ã³À½ ½ÇÇàÇÏ´Â °ÍÀÌ¶ó¸é, ÀÚ±İÀ» ÁÖ°í ½ÃÀÛ
+            // ì•±ì„ ì²˜ìŒ ì‹¤í–‰í•˜ëŠ” ê²ƒì´ë¼ë©´, ìê¸ˆì„ ì£¼ê³  ì‹œì‘
             if (PlayerPrefs.HasKey(KEY_GOLD) == false)
             {
                 PlayerPrefs.SetInt(KEY_GOLD, Common.INITIAL_GOLD);
@@ -60,7 +60,7 @@ namespace TinyTower
 
         public void UseGold(int cost, callback cb)
         {
-            if (_gold >= cost)
+            if( _gold >= cost )
             {
                 _gold -= cost;
 
@@ -68,29 +68,29 @@ namespace TinyTower
 
                 UI_Manager.I.Refresh_Gold_UI();
 
-                // °á°ú¸¦ ¾Ë·ÁÁÖµµ·Ï Äİ¹éÇÔ¼ö È£Ãâ
+                // ê²°ê³¼ë¥¼ ì•Œë ¤ì£¼ë„ë¡ ì½œë°±í•¨ìˆ˜ í˜¸ì¶œ
                 cb(true);
             }
             else
             {
-                // ½ÇÆĞ
+                // ì‹¤íŒ¨
                 cb(false);
             }
 
         }
 
-        public void AddGold(int gold, callback cb = null, bool refreshUI = true)
+        public void AddGold(int gold, callback cb = null, bool refreshUI=true)
         {
 
             _gold += gold;
 
             PlayerPrefs.SetInt(KEY_GOLD, _gold);
 
-            if (refreshUI)
+            if(refreshUI)
                 UI_Manager.I.Refresh_Gold_UI();
 
-            // °á°ú¸¦ ¾Ë·ÁÁÖµµ·Ï Äİ¹éÇÔ¼ö È£Ãâ
-            if (cb != null)
+            // ê²°ê³¼ë¥¼ ì•Œë ¤ì£¼ë„ë¡ ì½œë°±í•¨ìˆ˜ í˜¸ì¶œ
+            if( cb != null )
                 cb(true);
 
         }
@@ -100,9 +100,9 @@ namespace TinyTower
         #region FLOOR
         public void SaveFloor(string floorName)
         {
-            if (PlayerPrefs.HasKey(KEY_FLOOR_LIST))// ÀÌ¹Ì ÀúÀåµÈ floor Á¤º¸°¡ ÀÖ´Ù¸é
+            if(PlayerPrefs.HasKey(KEY_FLOOR_LIST))// ì´ë¯¸ ì €ì¥ëœ floor ì •ë³´ê°€ ìˆë‹¤ë©´
             {
-                //ÄŞ¸¶(,)·Î ÀÌ¾îºÙÀÌ±â ÇÑ´Ù.
+                 //ì½¤ë§ˆ(,)ë¡œ ì´ì–´ë¶™ì´ê¸° í•œë‹¤.
                 _floorList = PlayerPrefs.GetString(KEY_FLOOR_LIST);
 
                 _floorList += ", " + floorName;
@@ -110,7 +110,7 @@ namespace TinyTower
                 PlayerPrefs.SetString(KEY_FLOOR_LIST, _floorList);
 
             }
-            else// Ã³À½ ÀúÀåÇÏ´Â °ÍÀÌ¶ó¸é
+            else// ì²˜ìŒ ì €ì¥í•˜ëŠ” ê²ƒì´ë¼ë©´
             {
                 _floorList = floorName;
 

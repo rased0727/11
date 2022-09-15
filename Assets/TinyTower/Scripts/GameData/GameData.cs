@@ -1,20 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 
 namespace TinyTower
 {
-    // »óÇ° µ¥ÀÌÅÍ °ü¸® ÇÏ´Â Å¬·¡½º
     public class GameData : MonoBehaviour
     {
         public static GameData I;
-        // »óÇ° µ¥ÀÌÅÍ °ü¸®
-        public TextAsset _product_csv; // csv ÆÄÀÏ ±× ÀÚÃ¼¸¦ ¿¬°á
+
+        // ìƒí’ˆ ë°ì´í„° ê´€ë¦¬
+        public TextAsset _product_csv; // csvíŒŒì¼ ê·¸ ìì²´
         public List<GameData_Product> _product_dataList;
 
-        private void Awake()
+        //
+
+        //
+        void Awake()
         {
             I = this;
         }
@@ -22,42 +25,53 @@ namespace TinyTower
         public void Init()
         {
             Init_ProductData();
-
         }
+
         void Init_ProductData()
         {
             string text = _product_csv.text;
 
-            // StringReader : System.IO¿¡ ÀÖ´Â Å¬·¡½º·Î, ÆÄÀÏ·ÎºÎÅÍ ¹®ÀÚ¿­À» ÀĞ°Ô ÇØÁÜ
+            //StringReader: System.IOì˜ í´ë˜ìŠ¤, íŒŒì¼ë¡œë¶€í„° ë¬¸ìì—´ ì½ê²Œ í•´ì¤Œ
             using (StringReader reader = new StringReader(text))
             {
-                string firstline = reader.ReadLine(); // Ã¹¹øÂ° ÁÙÀ» ÀĞ´Âµ¥, Ã¹¹øÂ° ¶óÀÎÀº ÄÃ·³¸íÀÌ¾î¼­ ¹ö¸®±â À§ÇØ ±×³É ÀÌ·¸°Ô ½ÇÇà¸¸ ½ÃÄÑÁÜ
+                string firstLine = reader.ReadLine(); // ì²«ë²ˆì§¸ì¤„ì€ ì½ê³  ì“°ì§€ ì•ŠëŠ”ë‹¤(ì»¬ëŸ¼ ì´ë¦„ë“¤ì´ë¯€ë¡œ)
 
-                if(firstline != null)
+                if( firstLine != null )
                 {
                     string line = null;
-                    while ((line = reader.ReadLine()) != null)
+                    while((line = reader.ReadLine()) != null )
                     {
-                        // csv °ªÀÌ¹Ç·Î ',' seperator ·Î µ¥ÀÌÅÍ¸¦ ºĞ¸®ÇØ¼­ ÀúÀå
+                        // csv ê°’ì´ë¯€ë¡œ, ',' seperatorë¡œ ë°ì´í„°ë“¤ì„ ë¶„ë¦¬í•´ì„œ ì €ì¥
+
                         string[] record = line.Split(',');
 
-                        // ÇÑÁÙÀÇ µ¥ÀÌÅÍ °³¼ö´Â 3°³´Ù ¶ó°í ´Ü¾ğÇÏ´Â °ÅÀÓ. ³Ñ¾î°¡¸é ¿À·ù°¡ ³²
-                        Debug.Assert(record.Length == 5);
+                        Debug.Assert(record.Length == 6);
 
                         GameData_Product temp = new GameData_Product();
                         temp.name = record[0];
                         temp.floor = record[1];
-                        temp.cost = Convert.ToInt32(record[2]);
-                        temp.time = Convert.ToSingle(record[3]);
+                        temp.cost = Convert.ToInt32( record[2] );
+                        temp.time = Convert.ToSingle( record[3] );
                         temp.quantity = Convert.ToInt32(record[4]);
+                        temp.sprite = record[5];
 
+                        // ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¦„ì„ ê°€ì§€ê³ , ì‹¤ì œ ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ ë¡œë“œ
+                        Sprite spObj = Resources.Load<Sprite>(temp.sprite);
+                        temp.spriteImg = spObj;
+
+
+                        // Listì— í•˜ë‚˜ë¥¼ ì§‘ì–´ë„£ì„ ë•ŒëŠ” Add í•¨ìˆ˜ ì“´ë‹¤
                         _product_dataList.Add(temp);
                     }
+
+
                 }
 
+
+
             }
+
         }
 
     }
 }
-

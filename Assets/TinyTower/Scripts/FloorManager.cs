@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TinyTower
 {
-
+            
     public class FloorManager : MonoBehaviour
     {
 
@@ -14,7 +14,7 @@ namespace TinyTower
         public List<GameObject> _floorList;
 
 
-        [SerializeField] GameObject[] _templates; // ¸ÅÀå ÅÛÇÃ¸´ ¹è¿­
+        [SerializeField] GameObject[] _templates; // ë§¤ì¥ í…œí”Œë¦¿ ë°°ì—´
 
         void Awake()
         {
@@ -25,24 +25,24 @@ namespace TinyTower
         public void Init()
         {
 
-            // ÇÃ·Î¾î ·Îµù
+            // í”Œë¡œì–´ ë¡œë”©
             string floorList = UserData.I.FloorList;
 
             GameObject blockObj = transform.Find("block").gameObject;
             Block block = blockObj.GetComponent<Block>();
 
-            if (string.IsNullOrEmpty(floorList) == false)//ºó ¹®ÀÚ¿­ÀÌ ¾Æ´Ò ¶§
+            if (string.IsNullOrEmpty(floorList) == false)//ë¹ˆ ë¬¸ìì—´ì´ ì•„ë‹ ë•Œ
             {
-                // ½ºÇÃ¸´(split) ÇÔ¼ö¸¦ ½á¼­, ÄŞ¸¶·Î ±¸ºĞµÈ floor Á¤º¸µé °¡Á®¿À±â
+                // ìŠ¤í”Œë¦¿(split) í•¨ìˆ˜ë¥¼ ì¨ì„œ, ì½¤ë§ˆë¡œ êµ¬ë¶„ëœ floor ì •ë³´ë“¤ ê°€ì ¸ì˜¤ê¸°
                 string[] floorArray = floorList.Split(", ");
-                foreach (string floorName in floorArray)
+                foreach(string floorName in floorArray)
                 {
-                    foreach (GameObject t in _templates)
+                    foreach(GameObject t in _templates)
                     {
-                        if (t.name == floorName)
+                        if(t.name == floorName)
                         {
                             _Create(t, blockObj.transform.position, false);
-                            block.Raise(); //  ÇÃ·Î¾î »ı¼º ÈÄ, ºí¶ô ¿Ã·ÁÁÖ±â
+                            block.Raise(); //  í”Œë¡œì–´ ìƒì„± í›„, ë¸”ë½ ì˜¬ë ¤ì£¼ê¸°
 
                             break;
                         }
@@ -50,8 +50,8 @@ namespace TinyTower
                 }
             }
         }
-
-        public void Create(Vector3 blockPos) //·£´ıÀ¸·Î »ı¼º
+  
+        public void Create(Vector3 blockPos) //ëœë¤ìœ¼ë¡œ ìƒì„±
         {
             int choice = Random.Range(0, _templates.Length);
 
@@ -59,17 +59,17 @@ namespace TinyTower
 
             _Create(template, blockPos);
 
-            // À¯Àúµ¥ÀÌ·Î ÀúÀå
+            // ìœ ì €ë°ì´ë¡œ ì €ì¥
             UserData.I.SaveFloor(template.name);
 
         }
 
-        void _Create(GameObject template, Vector3 blockPos, bool firstBuild = true) // ÁöÁ¤ÇØ¼­ »ı¼º
+        void _Create(GameObject template, Vector3 blockPos, bool firstBuild=true) // ì§€ì •í•´ì„œ ìƒì„±
         {
             GameObject obj = Instantiate(template);
             obj.SetActive(true);
             obj.name = template.name;
-            if (firstBuild == false) // ÀÌ¹Ì ÀÖ´Â °Ç¹° ·Îµå(º¹¿ø)ÀÏ ¶§,
+            if (firstBuild == false) // ì´ë¯¸ ìˆëŠ” ê±´ë¬¼ ë¡œë“œ(ë³µì›)ì¼ ë•Œ,
             {
                 Floor floor = obj.GetComponent<Floor>();
                 if (floor != null)
@@ -78,9 +78,9 @@ namespace TinyTower
                 }
             }
 
-            // ¹Ş¾Æ¿Â ºí·ÏÀÇ À§Ä¡¸¦ »õ·Î »ı¼ºµÈ ¸ÅÀå¿¡°Ô ³Ñ°ÜÁÖ°í
+            // ë°›ì•„ì˜¨ ë¸”ë¡ì˜ ìœ„ì¹˜ë¥¼ ìƒˆë¡œ ìƒì„±ëœ ë§¤ì¥ì—ê²Œ ë„˜ê²¨ì£¼ê³ 
             obj.transform.position = blockPos;
-            obj.transform.parent = transform; // ÇÃ·Î¾î ¸Å´ÏÁ®ÀÇ ÀÚ½Ä°´Ã¼·Î µĞ´Ù
+            obj.transform.parent = transform; // í”Œë¡œì–´ ë§¤ë‹ˆì ¸ì˜ ìì‹ê°ì²´ë¡œ ë‘”ë‹¤
             _floorList.Add(obj);
 
 
@@ -88,9 +88,9 @@ namespace TinyTower
 
         private void Update()
         {
-            //Debug.Log("°ÔÀÓ ½Ã°£: " + Time.time);
+           //Debug.Log("ê²Œì„ ì‹œê°„: " + Time.time);
 
-            // Debug.Log("ÇÁ·¹ÀÓ½Ã°£°£°İ: " + Time.deltaTime);
+           // Debug.Log("í”„ë ˆì„ì‹œê°„ê°„ê²©: " + Time.deltaTime);
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,12 +22,18 @@ namespace TinyTower
             // UI매니져 초기화
             UI_Manager.I.Init();
 
+            StartCoroutine(_Update());
         }
 
         // Update is called once per frame
-        void Update()
+        IEnumerator _Update()
         {
+            while(true)
+            {
+                CameraDrag.I.UpdateCameraDrag();
 
+                yield return null;
+            }
         }
 
         void OnApplicationQuit()

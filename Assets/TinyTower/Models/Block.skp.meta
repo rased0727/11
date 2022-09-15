@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 2a814f3050367724fa1001635894ff17
+guid: 74a0e36dd1788c947a662339c81bc451
 SketchUpImporter:
-  serializedVersion: 21202
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -99,6 +99,7 @@ SketchUpImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
@@ -108,5 +109,5 @@ SketchUpImporter:
   selectedNodes: 0000000001000000
   assetHash:
     serializedVersion: 2
-    Hash: 884fff21550818fa2158c5c34a8da8b9
+    Hash: 641d52fb1e3a78f9894e9294c15e4cf6
   fileUnit: 0

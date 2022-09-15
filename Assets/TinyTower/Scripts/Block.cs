@@ -6,48 +6,68 @@ namespace TinyTower
 {
     public class Block : MonoBehaviour
     {
-        const float HEIGHT = 5.0f; // ºí·Ï 1°³ ÃşÀÇ ³ôÀÌ
+        const float HEIGHT = 5.0f; // ë¸”ë¡ì˜ ë†’ì´ : 5m
 
 
-        void OnMouseDown() // °ø»çÁß ºí·°À» ÅÍÄ¡ÇÏ¸é
+
+        void OnMouseDown()
         {
-            
+            // ê³µì‚¬ê°€ëŠ¥í•œ ì¸µ(ë¸”ë¡) í„°ì¹˜!!
+            //Debug.Log("ë¸”ë¡ í„°ì¹˜!!: " + Input.mousePosition.ToString());
+#if LEEYUNGHYUN_TEST
 
-            // UserData ¿¡¼­ °ñµå»ç¿ë ¸Ş¼­µå È£Ãâ
-            UserData.I.UseGold(Common.COST_SHOP, ChangeGoldCb);
+            Debug.Log("hello");
+#endif
+
+
+
+            UserData.I.UseGold(Common.COST_SHOP, UseGoldCb);
         }
-        void ChangeGoldCb(bool result)
-        {
-            if (result == true)
-            {
-                //Debug.Log("ºí·ÏÅÍÄ¡!! " + Input.mousePosition.ToString());
 
-                FloorManager.I.Create(transform.position);
-
-                // ÀÌ ºí·°(°ø»çÁß ºí·°)Àº ÇÑ Ãş À§·Î ¿Ã·ÁÁÖ±â
-                Raise();
-            }
-            else
-            {
-                // TODO : µ· ºÎÁ· ÆË¾÷Ã¢ ±¸Çö
-                // µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù ÆË¾÷Ã¢ ¶ç¿ì±â
-                PlatformDialog.SetButtonLabel("OK");
-                PlatformDialog.Show(
-                    "¾Ë¸²",
-                    "°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù.",
-                    PlatformDialog.Type.SubmitOnly,
-                    () => {
-                        Debug.Log("OK");
-                    },
-                    null
-                );
-            }
-        }
         public void Raise()
         {
+            // ìì‹ ì€ ì´ì œ í•œ ì¸µ ìœ„ë¡œ ì˜¬ë ¤ê°€ê¸°
             Vector3 blockPos = transform.position;
             transform.position = new Vector3(blockPos.x, blockPos.y + HEIGHT, blockPos.z);
         }
-    }
-}
 
+        void UseGoldCb(bool result)
+        {
+            if( result == true ) // ì„±ê³µ
+            {
+                FloorManager.I.Create(transform.position);
+                Raise(); //í”Œë¡œì–´ ìƒì„± í›„, ë¸”ë½ ì˜¬ë ¤ì£¼ê¸°
+            }
+            else
+            {
+                // TODO : ëˆ ë¶€ì¡± íŒì—…ì°½ êµ¬í˜„ (Native Platform Dialog ì‚¬ìš©)
+                // ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤ ë“±ì˜ íŒì—… ì•ˆë‚´ì°½ ë„ìš°ê¸°
+
+                PlatformDialog.SetButtonLabel("OK");
+                PlatformDialog.Show(
+                    "ì•Œë¦¼",
+                    "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.",
+                    PlatformDialog.Type.SubmitOnly,
+                    OkCb,
+                    CancelCb
+                );
+
+
+            }
+        }
+
+
+        void OkCb()
+        {
+            Debug.Log("OK");
+        }
+
+        void CancelCb()
+        {
+
+        }
+    }
+
+
+
+}

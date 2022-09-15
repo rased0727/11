@@ -6,53 +6,73 @@ namespace TinyTower
 {
     public class CameraDrag : MonoBehaviour
     {
+        public static CameraDrag I;
+
         Vector3 _dragStartPos;
-        [SerializeField]float _drageSpeed = 1;
-        [SerializeField]float _yMin = 21.7f;
+        [SerializeField]float _dragSpeed = 1.0f;
+
+        [SerializeField] float _yMin = 1.5f;
         [SerializeField] float _yMax = 60.0f;
 
-        // Start is called before the first frame update
-        void Start()
+        public bool _dragging = false;
+
+        void Awake()
         {
-            
+            I = this;
         }
 
-        // Update is called once per frame
-        void Update()
+        
+        public void UpdateCameraDrag()
         {
-            if (Input.GetMouseButtonDown(0)) // 0 ÀÌ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ°, ´­·¶À»¶§
+            if( Input.GetMouseButtonDown(0) ) // ë§ˆìš°ìŠ¤ê°€ í´ë¦­ë¨ (ë“œëž˜ê·¸ ì‹œìž‘)
             {
-                _dragStartPos = Input.mousePosition; 
+                _dragStartPos = Input.mousePosition;
 
+                //Debug.Log(Camera.main.ScreenToViewportPoint(Input.mousePosition));
+
+                _dragging = false;
             }
-            else if(Input.GetMouseButton(0)) // 0 ÀÌ ¿ÞÂÊ ¸¶¿ì½º ¹öÆ°, °è¼Ó ´­·¯Á® ÀÖÀ»¶§
+            else if( Input.GetMouseButton(0)) // ë§ˆìš°ìŠ¤ê°€ ê³„ì† ëˆŒë ¤ì§€ê³  ìžˆëŠ” ìƒíƒœ
             {
-                Vector3 currentPos = Input.mousePosition;
 
-                // À§¿¡¼­ÀÇ °á°ú¸¦ ÅëÇØ _dragStartPos - currentPos ¸¦ ÇÏ¸é ¹æÇâÀ» ¾Ë ¼ö ÀÖÀ¸¹Ç·Î ¹æÇâ°ªÀ» ³Ö¾îÁØ´Ù.
+                _dragging = true;
+
+                Vector3 currentPos = Input.mousePosition; ;
+
+                // ì´ ë•Œ ì¹´ë©”ë¼ë¥¼ ì›€ì§ì—¬ ì£¼ê¸°
+
                 Vector3 dir = currentPos - _dragStartPos;
 
-                // À§ÀÇ °ªµéÀº ¸ðµÎ UIÁÂÇ¥(mousePosition) ÀÌ¹Ç·Î ¹æÇâÁÂÇ¥¸¦ ¿ùµå°ªÀ¸·Î ¹Ù²ãÁÜ
-                Vector3 worldDir = Camera.main.ScreenToViewportPoint(dir);
-                Vector3 move = -1 * new Vector3(/*worldDir.x * _drageSpeed*/ 0, worldDir.y * _drageSpeed, 0);
 
-                if (move.y > 0) // ¿Ã¶ó°¥ ¶§´Â
+                Vector3 worldDir = Camera.main.ScreenToViewportPoint(dir);
+                Vector3 move = -1 * new Vector3(0, worldDir.y * _dragSpeed, 0);
+
+                //Debug.Log(move);
+
+                if (move.y > 0)
                 {
-                    if(transform.position.y < _yMax)
+                    if (transform.position.y < _yMax)
                     {
                         transform.Translate(move, Space.World);
                     }
                 }
-                else if(move.y < 0)
+                else if (move.y < 0)
                 {
-                    if(_yMin < transform.position.y)
+                    if (_yMin < transform.position.y)
                     {
                         transform.Translate(move, Space.World);
                     }
                 }
+               
             }
+            else if(Input.GetMouseButtonUp(0))
+            {
+                _dragging = false;
+            }
+            
 
         }
+
+
     }
 }
-

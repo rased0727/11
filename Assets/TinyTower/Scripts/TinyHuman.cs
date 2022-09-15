@@ -4,29 +4,40 @@ using UnityEngine;
 
 namespace TinyTower
 {
-    public class TinyHuman : MonoBehaviour
+    public class TinyHuman : WaypointTraveller
     {
         [SerializeField] float _maxDistance = 15.0f;
-        [SerializeField] float _moveDelta = 0.0001f;
-        [SerializeField] float _distance = 0.0f;
+        [SerializeField]float _moveDelta = 0.01f;
+        [SerializeField]float _distance = 0.0f;
+
+
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
-
+            base.Start();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            move();
 
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            if (_waypoints.Count > 0)
+            {
+
+            }
+            else
+            {
+                move();
+            }
         }
 
         void move()
         {
-            // normalized 를 하면 길이가 1이 됨(=단위벡터)
-            Vector3 dirNormalized = transform.forward.normalized; 
+            Vector3 dirNormalized = transform.forward.normalized;
 
             _distance += _moveDelta;
 
@@ -34,26 +45,12 @@ namespace TinyTower
 
             if (_distance > _maxDistance)
             {
+                // 턴 하기
                 transform.Rotate(Vector3.up, 180.0f);
                 _distance = 0.0f;
             }
         }
 
 
-        float direction = 1.0f;
-        void move2()
-        {
-            _distance += _moveDelta;
-
-            transform.Translate(new Vector3(direction * _moveDelta, 0, 0), Space.World);
-
-            if (_distance > _maxDistance)
-            {
-                transform.Rotate(Vector3.up, 180.0f);
-                _distance = 0.0f;
-
-                direction *= -1.0f;
-            }
-        }
     }
 }

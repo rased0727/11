@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TinyTower
 {
-    // 게임 데이터 형식을 지정하는 클래스
+
     [Serializable]
     public class GameData_Product
     {
@@ -14,6 +14,8 @@ namespace TinyTower
         public int cost;
         public float time;
         public int quantity;
+        public string sprite;
+
+        public Sprite spriteImg;
     }
 }
-
