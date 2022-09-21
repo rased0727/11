@@ -15,7 +15,7 @@ namespace PixelDungeon
     {
         public StairDirection _direction;
 
-        public GameObject _destObj; // destination ∏Ò¿˚¡ˆ
+        public GameObject _destObj; // destination Î™©Ï†ÅÏßÄ
 
         void Start()
         {
@@ -24,13 +24,13 @@ namespace PixelDungeon
 
             string floor = transform.parent.parent.gameObject.name.Replace("Floor_", "");
 
-            int nextFloor = Convert.ToInt32(floor);
+            int nextFloor = Convert.ToInt32(floor); 
 
             if (_direction == StairDirection.DOWN)
             {
                 nextFloor++;
             }
-            else if (_direction == StairDirection.UP)
+            else if( _direction == StairDirection.UP )
             {
                 nextFloor--;
             }
@@ -46,10 +46,10 @@ namespace PixelDungeon
 
 
                 Transform floorTrans = GameWorld.I.transform.Find("Floor_" + nextFloor);
-                if (floorTrans != null)
+                if( floorTrans != null )
                 {
                     Transform objTrans = floorTrans.Find("objects");
-                    if (objTrans != null)
+                    if( objTrans != null )
                     {
                         _destObj = objTrans.Find("stair_" + dir).gameObject;
                     }
@@ -61,5 +61,3 @@ namespace PixelDungeon
 
     }
 }
-
-

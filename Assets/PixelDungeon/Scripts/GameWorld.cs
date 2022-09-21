@@ -6,8 +6,9 @@ namespace PixelDungeon
 {
     public class GameWorld : MonoBehaviour
     {
-        public static GameWorld I;
-        // Start is called before the first frame update
+        public static GameWorld I; // 싱글턴 인스턴스
+
+
         void Awake()
         {
             I = this;
@@ -15,4 +16,3 @@ namespace PixelDungeon
 
     }
 }
-

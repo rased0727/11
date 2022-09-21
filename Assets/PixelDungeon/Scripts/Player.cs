@@ -9,12 +9,12 @@ namespace PixelDungeon
         public static Player I;
 
         [SerializeField] int _floor = 1;
-        public int Floor
-        {
-            get { return _floor; }
+        public int Floor 
+        { 
+            get{  return _floor; }            
         }
 
-        [SerializeField] float _speed = 1.0f;
+        [SerializeField]float _speed = 1.0f;
         Animator _anim;
         SpriteRenderer _renderer;
         Rigidbody2D _rigid;
@@ -23,7 +23,7 @@ namespace PixelDungeon
 
         void Awake()
         {
-            I = this;
+            I = this;    
         }
 
         void Start()
@@ -90,7 +90,7 @@ namespace PixelDungeon
             Debug.Log("트리거 이벤트! : " + collision.gameObject.name);
 
             Stair stair = collision.gameObject.GetComponent<Stair>();
-            if (stair != null) // 트리거 오브젝트가 계단인 경우
+            if(stair != null) // 트리거 오브젝트가 계단인 경우
             {
                 // 방금 막 이동된 경우는 워프 안함 return
                 if (_doingWARP == true) return;
@@ -103,11 +103,12 @@ namespace PixelDungeon
                     StartWARP();
                 }
 
-                if (stair._direction == StairDirection.DOWN)
+                if( stair._direction == StairDirection.DOWN)
                 {
                     _floor++;
+                    UI_Manager.I.Topbar.Refresh();
                 }
-                else if (stair._direction == StairDirection.UP)
+                else if(stair._direction == StairDirection.UP)
                 {
                     if (_floor == 1)
                     {
@@ -124,27 +125,28 @@ namespace PixelDungeon
                     else
                     {
                         _floor--;
+                        UI_Manager.I.Topbar.Refresh();
                     }
                 }
 
             }
 
         }
-
+    
         void StartWARP()
         {
+            UI_Manager.I.ScreenBlock.Play();
             _doingWARP = true;
-            Invoke("StopWARP", 1.0f);
+            Invoke("StopWARP", 2.0f);
         }
 
         void StopWARP()
         {
             _doingWARP = false;
+            UI_Manager.I.ScreenBlock.Stop();
         }
 
-
-
+        
+    
     }
 }
-
-
