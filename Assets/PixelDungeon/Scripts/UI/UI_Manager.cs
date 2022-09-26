@@ -11,10 +11,14 @@ namespace PixelDungeon
         [SerializeField] UI_ScreenBlock _screenBlock;
         public UI_ScreenBlock ScreenBlock { get { return _screenBlock;  } }
 
-
         [SerializeField] UI_Topbar _topbar;
         public UI_Topbar Topbar { get { return _topbar; } }
 
+        [SerializeField] UI_GameOver _gameover;
+        public UI_GameOver Gameover { get { return _gameover; } }
+
+        [SerializeField] UI_GameLog _gamelog;
+        public UI_GameLog Gamelog { get { return _gamelog; } }
 
         private void Awake()
         {
@@ -30,6 +34,9 @@ namespace PixelDungeon
         {
             _screenBlock = transform.Find("UI_ScreenBlock").GetComponent<UI_ScreenBlock>();
             _topbar = transform.Find("UI_Topbar").GetComponent<UI_Topbar>();
+            _gameover = transform.Find("UI_GameOver").GetComponent<UI_GameOver>();
+            _gamelog = transform.Find("UI_GameLog").GetComponent<UI_GameLog>();
+
 
             UI_Base[] uiList = GetComponentsInChildren<UI_Base>(true);
             foreach(UI_Base ui in uiList)

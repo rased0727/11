@@ -12,7 +12,7 @@ namespace PixelDungeon
         // Start is called before the first frame update
         public override void Init()
         {
-            _floorTxt = transform.Find("flootTxt").GetComponent<Text>();
+            _floorTxt = transform.Find("floorTxt").GetComponent<Text>();
         }
 
         /*public void RefreshFloor(int floor)

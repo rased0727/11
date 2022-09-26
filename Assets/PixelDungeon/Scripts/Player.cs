@@ -4,33 +4,36 @@ using UnityEngine;
 
 namespace PixelDungeon
 {
-    public class Player : MonoBehaviour
+    public class Player : Unit
     {
+
+
         public static Player I;
 
         [SerializeField] int _floor = 1;
-        public int Floor 
-        { 
-            get{  return _floor; }            
+        public int Floor
+        {
+            get { return _floor; }
         }
 
-        [SerializeField]float _speed = 1.0f;
-        Animator _anim;
+        [SerializeField] float _speed = 1.0f;
         SpriteRenderer _renderer;
         Rigidbody2D _rigid;
+        Color _orgColor;
 
         bool _doingWARP = false;
 
         void Awake()
         {
-            I = this;    
+            I = this;
         }
 
-        void Start()
+        protected override void Start()
         {
-            _anim = GetComponent<Animator>();
+            base.Start();
             _renderer = GetComponent<SpriteRenderer>();
             _rigid = GetComponent<Rigidbody2D>();
+            _orgColor = _renderer.color;
         }
 
         // Update is called once per frame
@@ -90,7 +93,7 @@ namespace PixelDungeon
             Debug.Log("트리거 이벤트! : " + collision.gameObject.name);
 
             Stair stair = collision.gameObject.GetComponent<Stair>();
-            if(stair != null) // 트리거 오브젝트가 계단인 경우
+            if (stair != null) // 트리거 오브젝트가 계단인 경우
             {
                 // 방금 막 이동된 경우는 워프 안함 return
                 if (_doingWARP == true) return;
@@ -103,12 +106,12 @@ namespace PixelDungeon
                     StartWARP();
                 }
 
-                if( stair._direction == StairDirection.DOWN)
+                if (stair._direction == StairDirection.DOWN)
                 {
                     _floor++;
                     UI_Manager.I.Topbar.Refresh();
                 }
-                else if(stair._direction == StairDirection.UP)
+                else if (stair._direction == StairDirection.UP)
                 {
                     if (_floor == 1)
                     {
@@ -132,7 +135,7 @@ namespace PixelDungeon
             }
 
         }
-    
+
         void StartWARP()
         {
             UI_Manager.I.ScreenBlock.Play();
@@ -146,7 +149,23 @@ namespace PixelDungeon
             UI_Manager.I.ScreenBlock.Stop();
         }
 
-        
-    
+        public void DoHitEffect()
+        {
+            ChangeRed();
+        }
+        void ChangeRed()
+        {
+            _renderer.color = new Color(255, 0, 0);
+            Invoke("ChangeOrg", 0.3f);
+        }
+        public void ChangeOrg()
+        {
+            _renderer.color = _orgColor;
+        }
+
+
+
     }
 }
+
+
