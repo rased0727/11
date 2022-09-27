@@ -17,9 +17,8 @@ namespace PixelDungeon
         }
 
         [SerializeField] float _speed = 1.0f;
-        SpriteRenderer _renderer;
+
         Rigidbody2D _rigid;
-        Color _orgColor;
 
         bool _doingWARP = false;
 
@@ -31,9 +30,7 @@ namespace PixelDungeon
         protected override void Start()
         {
             base.Start();
-            _renderer = GetComponent<SpriteRenderer>();
             _rigid = GetComponent<Rigidbody2D>();
-            _orgColor = _renderer.color;
         }
 
         // Update is called once per frame
@@ -147,20 +144,6 @@ namespace PixelDungeon
         {
             _doingWARP = false;
             UI_Manager.I.ScreenBlock.Stop();
-        }
-
-        public void DoHitEffect()
-        {
-            ChangeRed();
-        }
-        void ChangeRed()
-        {
-            _renderer.color = new Color(255, 0, 0);
-            Invoke("ChangeOrg", 0.3f);
-        }
-        public void ChangeOrg()
-        {
-            _renderer.color = _orgColor;
         }
 
 

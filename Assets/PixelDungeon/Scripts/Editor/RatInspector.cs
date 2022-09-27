@@ -7,7 +7,7 @@ namespace PixelDungeon
 {
 
     [CustomEditor(typeof(Rat))]
-    public class GameManagerInpector : Editor
+    public class RatInpector : Editor
     {
         Rat _rat;
 
@@ -20,10 +20,25 @@ namespace PixelDungeon
             {
                 _rat.Attack();
 
-                Player.I.DoDamage();
+
+                // 치트
+                // 플레이어의 체력을 깍아주기(테스트)
+                int damage = 10;
+
+                Player.I.DoDamage(damage);
+
+                string formatStr = string.Format("{0}가 {1}에게 {2}데미지를 입혔습니다",
+                    _rat.gameObject.name,
+                    Player.I.gameObject.name,
+                    damage);
+
+                UI_Manager.I.GameLog.Play(formatStr);
+
             }
 
-            base.OnInspectorGUI(); //원래의 Door의 변수들이 인스펙터에 보여짐
+            base.OnInspectorGUI();
         }
     }
 }
+
+

@@ -5,25 +5,48 @@ using UnityEngine.UI;
 
 namespace PixelDungeon
 {
-    public class UI_GameLog : UI_Base
+    public class UI_GameLog : MonoBehaviour
     {
-        public Text _log;
+        public GameObject _logObjTemplate;
+        //public Text _logTxt;
+        public float _playTime = 10.0f;
+
+
         // Start is called before the first frame update
-        public override void Init()
+        void Start()
         {
-            _log = transform.Find("gameLog").GetComponent<Text>();
+            //_logTxt = transform.Find("verticalLayout/logTxt").GetComponent<Text>();
+            _logObjTemplate = transform.Find("verticalLayout/logTxt").gameObject;
+            _logObjTemplate.SetActive(false);
+
+            //_logTxt.enabled = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+
         }
-        public void Hit()
+
+        public void Play(string message)
         {
-            gameObject.SetActive(true);
-            _log.text = "쥐에게 공격을 받았습니다";
+            StartCoroutine(_Play(message));
+        }
+
+        IEnumerator _Play(string message)
+        {
+            GameObject newLogObj = Instantiate(_logObjTemplate);
+            newLogObj.transform.parent = transform.Find("verticalLayout");
+            newLogObj.SetActive(true);
+
+            Text logTxt = newLogObj.GetComponent<Text>();
+            logTxt.text = message;
+
+            yield return new WaitForSeconds(_playTime);
+
+            Destroy(newLogObj);
         }
     }
 }
+
 

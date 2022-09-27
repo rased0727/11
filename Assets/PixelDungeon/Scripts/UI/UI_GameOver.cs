@@ -20,7 +20,7 @@ namespace PixelDungeon
         public void Show()
         {
             gameObject.SetActive(true);
-            UI_Manager.I.Gamelog.gameObject.SetActive(false);
+            UI_Manager.I.GameLog.gameObject.SetActive(false);
         }
     }
 }
